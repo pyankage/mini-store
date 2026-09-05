@@ -50,7 +50,12 @@ function handleLogout() {
 // ===== AMBIL PRODUK DARI LOCALSTORAGE =====
 function getProducts() {
   const data = localStorage.getItem(PRODUCTS_KEY);
-  return data ? JSON.parse(data) : [];
+  try {
+    return data ? JSON.parse(data) : [];
+  } catch (e) {
+    console.error('Error parsing products:', e);
+    return [];
+  }
 }
 
 // ===== SIMPAN PRODUK KE LOCALSTORAGE =====
