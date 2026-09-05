@@ -1,6 +1,6 @@
 // ============================================
-// SCRIPT.JS - Interaksi, Drawer, Filter, Pagination
-// Mendukung halaman utama dan halaman kedua
+// SCRIPT.JS - Store App (Final v24)
+// Mendukung halaman utama & halaman kedua
 // ============================================
 
 let allProducts = [];
@@ -9,7 +9,7 @@ let currentSub = null;
 let currentSort = 'rekomendasi';
 let currentType = 'semua';
 let currentPage = 1;
-const itemsPerPage = 28; // untuk halaman kedua
+const itemsPerPage = 28;
 
 // ===== DATA DUMMY =====
 function createDummyProducts(count) {
@@ -67,12 +67,13 @@ function renderProducts(products, gridId) {
   });
 }
 
-// ===== FILTER & SORT (untuk halaman utama dan halaman kedua) =====
+// ===== FILTER & SORT =====
 function applyFilterAndSort() {
   let filtered = allProducts;
 
-  // Filter genre (hanya jika elemen genre ada)
-  if (document.getElementById('genreMenu') || document.getElementById('drawer')) {
+  // Filter genre (jika elemen drawer/genre ada)
+  const hasGenreFilter = document.getElementById('drawer') || document.getElementById('genreMenu');
+  if (hasGenreFilter) {
     if (currentGenre !== 'semua') {
       filtered = filtered.filter(p => p.genre === currentGenre);
     }
@@ -81,7 +82,7 @@ function applyFilterAndSort() {
     }
   }
 
-  // Filter tipe (jika ada elemen typeFilter)
+  // Filter tipe
   if (document.getElementById('typeFilter')) {
     if (currentType !== 'semua') {
       filtered = filtered.filter(p => p.type === currentType);
@@ -119,16 +120,20 @@ function renderProductPage() {
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const pageItems = filtered.slice(start, end);
-
   renderProducts(pageItems, 'productGrid');
 
-  // Update pagination
+  // Update elemen pagination
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const pageInfo = document.getElementById('pageInfo');
+  const prevPageNum = document.getElementById('prevPageNum');
+  const nextPageNum = document.getElementById('nextPageNum');
+
   if (prevBtn) prevBtn.disabled = currentPage === 1;
   if (nextBtn) nextBtn.disabled = currentPage === totalPages;
   if (pageInfo) pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+  if (prevPageNum) prevPageNum.textContent = Math.max(1, currentPage - 1);
+  if (nextPageNum) nextPageNum.textContent = Math.min(totalPages, currentPage + 1);
 }
 
 // ===== DRAWER =====
@@ -180,7 +185,7 @@ function bindEvents() {
     });
   }
 
-  // Drawer (hanya halaman utama)
+  // Drawer
   const menuDots = document.getElementById('menuDots');
   const overlay = document.getElementById('drawerOverlay');
   const drawerClose = document.getElementById('drawerClose');
@@ -209,7 +214,12 @@ function bindEvents() {
     btn.addEventListener('click', () => {
       currentGenre = btn.dataset.genre;
       currentSub = null;
-      if (document.getElementById('productGrid')) renderHomePage();
+      if (document.getElementById('pagination')) {
+        currentPage = 1;
+        renderProductPage();
+      } else {
+        renderHomePage();
+      }
       closeDrawer();
     });
   });
@@ -219,7 +229,12 @@ function bindEvents() {
     semuaBtn.addEventListener('click', () => {
       currentGenre = 'semua';
       currentSub = null;
-      if (document.getElementById('productGrid')) renderHomePage();
+      if (document.getElementById('pagination')) {
+        currentPage = 1;
+        renderProductPage();
+      } else {
+        renderHomePage();
+      }
       closeDrawer();
     });
   }
@@ -244,17 +259,22 @@ function bindEvents() {
       const parentGroup = btn.closest('.drawer-category-group');
       currentGenre = parentGroup.dataset.genre;
       currentSub = btn.dataset.sub;
-      if (document.getElementById('productGrid')) renderHomePage();
+      if (document.getElementById('pagination')) {
+        currentPage = 1;
+        renderProductPage();
+      } else {
+        renderHomePage();
+      }
       closeDrawer();
     });
   });
 
-  // Genre-card (hanya halaman utama)
+  // Genre-card (halaman utama)
   document.querySelectorAll('.genre-card').forEach(card => {
     card.addEventListener('click', () => {
       currentGenre = card.dataset.genre;
       currentSub = null;
-      if (document.getElementById('productGrid')) renderHomePage();
+      renderHomePage();
     });
   });
 
@@ -263,14 +283,11 @@ function bindEvents() {
   if (sortSelect) {
     sortSelect.addEventListener('change', () => {
       currentSort = sortSelect.value;
-      if (document.getElementById('productGrid')) {
-        // Cek apakah ini halaman kedua (ada pagination)
-        if (document.getElementById('pagination')) {
-          currentPage = 1;
-          renderProductPage();
-        } else {
-          renderHomePage();
-        }
+      if (document.getElementById('pagination')) {
+        currentPage = 1;
+        renderProductPage();
+      } else {
+        renderHomePage();
       }
     });
   }
@@ -283,13 +300,11 @@ function bindEvents() {
         typeFilter.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentType = btn.dataset.type;
-        if (document.getElementById('productGrid')) {
-          if (document.getElementById('pagination')) {
-            currentPage = 1;
-            renderProductPage();
-          } else {
-            renderHomePage();
-          }
+        if (document.getElementById('pagination')) {
+          currentPage = 1;
+          renderProductPage();
+        } else {
+          renderHomePage();
         }
       });
     });
@@ -322,11 +337,9 @@ function bindEvents() {
 
 // ===== INISIALISASI =====
 document.addEventListener('DOMContentLoaded', () => {
-  // Tentukan jumlah produk berdasarkan halaman
   const isProductPage = document.getElementById('pagination') !== null;
   allProducts = createDummyProducts(isProductPage ? 50 : 28);
 
-  // Render awal
   if (isProductPage) {
     currentPage = 1;
     renderProductPage();
