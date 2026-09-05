@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Store App (Final v18)
+   STYLE.CSS - Store App (Final v19)
    ============================================ */
 
 * {
@@ -20,7 +20,7 @@ body {
   margin: 0;
 }
 
-/* ===== HEADER (HALAMAN UTAMA) ===== */
+/* ===== HEADER ===== */
 .store-header {
   width: 100%;
   max-width: 750px;
@@ -30,7 +30,6 @@ body {
   padding: 0.9rem 1.2rem 1rem;
   margin: 0 auto;
   transition: all 0.2s ease;
-  /* Tidak sticky */
 }
 
 /* ===== BARIS ATAS ===== */
@@ -46,34 +45,40 @@ body {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  flex-wrap: wrap; /* agar navigasi kategori bisa wrap di layar sempit */
 }
 
-.menu-dots {
+/* ===== NAVIGASI KATEGORI (PENGGANTI TITIK 3) ===== */
+.category-nav {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  transition: background 0.2s;
-  color: #1e293b;
-  font-size: 1.8rem;
-  line-height: 1;
+  gap: 0.3rem;
 }
 
-.menu-dots i {
-  font-size: 1.8rem;
-}
-
-.menu-dots:hover {
+.nav-cat-btn {
   background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-cat-btn:hover {
+  background: #e2e8f0;
+}
+
+.nav-cat-btn.active {
+  background: #0f172a;
+  color: white;
+  border-color: #0f172a;
 }
 
 .store-title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: #0f172a;
@@ -90,7 +95,7 @@ body {
   color: white;
   border: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   padding: 0.6rem 1.2rem;
   border-radius: 10px;
   cursor: pointer;
@@ -100,36 +105,22 @@ body {
   gap: 6px;
   transition: all 0.2s;
   box-shadow: 0 6px 12px rgba(15, 23, 42, 0.15);
-  white-space: nowrap;
-}
-
-.login-btn i {
-  font-size: 0.9rem;
-  opacity: 0.9;
+  text-decoration: none;
 }
 
 .login-btn:hover {
   background: #1e293b;
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
-  transform: translateY(-1px);
 }
 
-.login-btn:active {
-  transform: translateY(0px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* ===== BAGIAN PENCARIAN (STICKY DI SEMUA HALAMAN) ===== */
+/* ===== BAGIAN PENCARIAN (STICKY) ===== */
 .search-section {
   display: flex;
   align-items: center;
-  background: #ffffff;           /* solid agar menutupi konten saat sticky */
+  background: #ffffff;
   border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
   border-radius: 0;
-
-  /* Potongan chamfer di kiri bawah & kanan bawah */
   --cut: 8px;
   clip-path: polygon(
     0 0,
@@ -139,13 +130,10 @@ body {
     var(--cut) 100%,
     0 calc(100% - var(--cut))
   );
-
   position: sticky;
   top: 0;
   z-index: 99;
-  width: 100%;
-  max-width: 750px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .search-section:focus-within {
@@ -209,7 +197,6 @@ body {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-
   --cut: 8px;
   clip-path: polygon(
     var(--cut) 0,
@@ -230,80 +217,7 @@ body {
   background: #1e293b;
 }
 
-/* ===== MENU KATEGORI HORIZONTAL (HANYA DI HALAMAN UTAMA) ===== */
-.category-menu {
-  display: flex;
-  gap: 0.8rem;
-  overflow-x: auto;
-  padding: 0.6rem 0.2rem 0.4rem;
-  margin-top: 0.8rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  background: transparent;
-}
-
-.category-menu::-webkit-scrollbar {
-  display: none;
-}
-
-.category-card {
-  flex: 0 0 38%;
-  max-width: 200px;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 0;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-
-  --cut: 10px;
-  clip-path: polygon(
-    var(--cut) 0,
-    100% 0,
-    100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%,
-    0 100%,
-    0 var(--cut)
-  );
-
-  overflow: hidden;
-}
-
-.category-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-}
-
-.card-image {
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  background: #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  color: #64748b;
-  transition: background 0.2s;
-}
-
-.category-card:hover .card-image {
-  background: #e2e8f0;
-}
-
-.card-label {
-  padding: 0.5rem 0.4rem;
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #0f172a;
-  background: #ffffff;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* ===== MENU GENRE (HANYA DI HALAMAN UTAMA) ===== */
+/* ===== MENU GENRE ===== */
 .genre-menu {
   display: flex;
   gap: 0.6rem;
@@ -328,7 +242,6 @@ body {
   border-radius: 0;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-
   --cut: 6px;
   clip-path: polygon(
     var(--cut) 0,
@@ -338,7 +251,6 @@ body {
     0 100%,
     0 var(--cut)
   );
-
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -350,6 +262,11 @@ body {
 .genre-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.genre-card.active {
+  border-color: #0f172a;
+  background: #f8fafc;
 }
 
 .genre-icon {
@@ -381,76 +298,6 @@ body {
   padding: 0.45rem 0.9rem;
   border-radius: 10px;
   width: fit-content;
-}
-
-.info-note i {
-  font-size: 0.9rem;
-}
-
-/* ===== FILTER & SORTING BAR (TIDAK STICKY) ===== */
-.filter-section {
-  width: 100%;
-  max-width: 750px;
-  margin: 1rem auto 0;
-  padding: 0 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.filter-row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.filter-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #0f172a;
-  min-width: 70px;
-}
-
-.filter-buttons {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #334155;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-
-.filter-btn:hover {
-  background: #e2e8f0;
-}
-
-.filter-btn.active {
-  background: #0f172a;
-  color: white;
-  border-color: #0f172a;
-}
-
-.sort-select {
-  padding: 0.4rem 0.8rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  background: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #0f172a;
-  cursor: pointer;
-  outline: none;
 }
 
 /* ===== SECTION DAFTAR JUALAN ===== */
@@ -491,14 +338,12 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
-/* Area gambar produk dengan rasio 16:9 + potongan kiri atas & kanan bawah */
 .product-image {
   width: 100%;
   aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center;
   background-color: #f1f5f9;
-
   --cut: 10px;
   clip-path: polygon(
     var(--cut) 0,
@@ -510,7 +355,6 @@ body {
   );
 }
 
-/* Info produk */
 .product-info {
   padding: 0.5rem 0.6rem;
   display: flex;
@@ -533,7 +377,6 @@ body {
   color: #0f172a;
 }
 
-/* Badge genre & tipe */
 .product-meta {
   display: flex;
   gap: 0.3rem;
@@ -587,197 +430,23 @@ body {
   transform: translateY(-2px);
 }
 
-.show-all-btn.secondary {
-  background: #e2e8f0;
-  color: #0f172a;
-  box-shadow: none;
-}
-
-.show-all-btn.secondary:hover {
-  background: #cbd5e1;
-}
-
-/* ===== PAGINATION ===== */
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
-}
-
-.pagination-btn {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: #0f172a;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: all 0.2s;
-}
-
-.pagination-btn:hover:not(:disabled) {
-  background: #f1f5f9;
-}
-
-.pagination-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.page-info {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #334155;
-}
-
-/* ===== PENJELASAN TAMBAHAN ===== */
-.explanation {
-  max-width: 750px;
-  margin: 1.2rem auto;
-  padding: 0 1.2rem;
-  color: #334155;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.explanation p {
-  background: #ffffff;
-  padding: 0.8rem 1.2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-}
-
 /* ===== RESPONSIVE ===== */
-@media (max-width: 480px) {
-  .store-header {
-    padding: 0.8rem 0.9rem 0.8rem;
-    border-radius: 0 0 16px 16px;
-  }
-
+@media (max-width: 600px) {
   .store-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
-
-  .login-btn {
-    padding: 0.5rem 0.9rem;
-    font-size: 0.85rem;
-    border-radius: 8px;
+  .nav-cat-btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
   }
-
-  .menu-dots {
-    width: 40px;
-    height: 40px;
-    font-size: 1.6rem;
+  .left-group {
+    gap: 0.4rem;
   }
-
   .search-section {
     --cut: 5px;
     padding: 0.2rem 0.3rem 0.2rem 0.8rem;
-    clip-path: polygon(
-      0 0,
-      100% 0,
-      100% calc(100% - var(--cut)),
-      calc(100% - var(--cut)) 100%,
-      var(--cut) 100%,
-      0 calc(100% - var(--cut))
-    );
   }
-
   .search-btn span {
     display: none;
-  }
-
-  .search-btn {
-    padding: 0.45rem 0.8rem;
-    --cut: 5px;
-    clip-path: polygon(
-      var(--cut) 0,
-      100% 0,
-      100% calc(100% - var(--cut)),
-      calc(100% - var(--cut)) 100%,
-      0 100%,
-      0 var(--cut)
-    );
-  }
-
-  .category-menu {
-    gap: 0.6rem;
-  }
-
-  .category-card {
-    flex: 0 0 40%;
-    max-width: 150px;
-    --cut: 8px;
-  }
-
-  .card-image {
-    font-size: 2rem;
-  }
-
-  .card-label {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.3rem;
-  }
-
-  .genre-menu {
-    gap: 0.4rem;
-  }
-
-  .genre-card {
-    flex: 0 0 calc(33.333% - 0.267rem);
-    max-width: 80px;
-    --cut: 5px;
-  }
-
-  .genre-icon {
-    font-size: 1.2rem;
-  }
-
-  .genre-label {
-    font-size: 0.6rem;
-  }
-
-  .product-list-section {
-    padding: 0 0.9rem 1.5rem;
-  }
-
-  .product-grid {
-    gap: 0.6rem;
-  }
-
-  .product-info {
-    padding: 0.4rem 0.5rem;
-  }
-
-  .product-name,
-  .product-price {
-    font-size: 0.75rem;
-  }
-
-  .filter-section {
-    padding: 0 0.9rem;
-  }
-  .filter-label {
-    min-width: 55px;
-    font-size: 0.75rem;
-  }
-  .filter-btn {
-    padding: 0.3rem 0.7rem;
-    font-size: 0.7rem;
-  }
-  .sort-select {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.75rem;
-  }
-
-  .pagination-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
   }
 }
