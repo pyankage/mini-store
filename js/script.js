@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Kartu kategori: klik untuk menampilkan nama kategori
+  // Kartu kategori
   const categoryCards = document.querySelectorAll('.category-card');
   categoryCards.forEach(card => {
     card.addEventListener('click', function() {
@@ -61,12 +61,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Kartu genre: klik untuk menampilkan nama genre
+  // Kartu genre
   const genreCards = document.querySelectorAll('.genre-card');
   genreCards.forEach(card => {
     card.addEventListener('click', function() {
       const label = this.querySelector('.genre-label').textContent;
       alert('Genre dipilih: ' + label);
+    });
+  });
+
+  // Kartu produk (daftar jualan)
+  const productCards = document.querySelectorAll('.product-card');
+  productCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const name = this.querySelector('.product-name').textContent;
+      const price = this.querySelector('.product-price').textContent;
+      alert('Produk dipilih:\n' + name + '\n' + price);
     });
   });
 
