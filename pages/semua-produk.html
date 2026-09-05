@@ -4,40 +4,134 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Store • Semua Produk</title>
+
+  <!-- Font Awesome untuk icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Perhatikan path CSS karena berada di subfolder pages -->
+  <!-- CSS eksternal -->
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <!-- HEADER UTAMA (diisi oleh JavaScript) -->
-  <header class="store-header" id="storeHeader"></header>
 
-  <!-- DAFTAR SEMUA PRODUK -->
+  <!-- ===== HEADER UTAMA ===== -->
+  <header class="store-header">
+    <!-- Baris atas -->
+    <div class="top-bar">
+      <div class="left-group">
+        <button class="menu-dots" id="menuDots" aria-label="Menu garis tiga" title="Menu utama">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="store-title">STORE</div>
+      </div>
+      <button class="login-btn" id="loginBtn" title="Masuk ke akun">
+        <i class="fa-solid fa-user"></i> MASUK
+      </button>
+    </div>
+
+    <!-- Pencarian (sticky) -->
+    <div class="search-section">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" class="search-input" id="searchInput" placeholder="Cari produk, kategori, atau brand..." aria-label="kolom pencarian">
+      <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button class="search-btn" id="searchBtn" aria-label="tombol cari">
+        <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
+      </button>
+    </div>
+
+    <!-- Kategori (scroll horizontal) -->
+    <div class="category-menu" id="categoryMenu">
+      <div class="category-card">
+        <div class="card-image"><i class="fa-solid fa-border-all"></i></div>
+        <div class="card-label">Semua</div>
+      </div>
+      <div class="category-card">
+        <div class="card-image"><i class="fa-solid fa-laptop"></i></div>
+        <div class="card-label">Elektronik</div>
+      </div>
+      <div class="category-card">
+        <div class="card-image"><i class="fa-solid fa-shirt"></i></div>
+        <div class="card-label">Fashion</div>
+      </div>
+      <div class="category-card">
+        <div class="card-image"><i class="fa-solid fa-utensils"></i></div>
+        <div class="card-label">Makanan</div>
+      </div>
+      <div class="category-card">
+        <div class="card-image"><i class="fa-solid fa-gamepad"></i></div>
+        <div class="card-label">Game</div>
+      </div>
+    </div>
+
+    <!-- Genre (3 kotak) -->
+    <div class="genre-menu" id="genreMenu">
+      <div class="genre-card">
+        <div class="genre-icon"><i class="fa-solid fa-user"></i></div>
+        <div class="genre-label">AKUN</div>
+      </div>
+      <div class="genre-card">
+        <div class="genre-icon"><i class="fa-solid fa-box"></i></div>
+        <div class="genre-label">ITEM</div>
+      </div>
+      <div class="genre-card">
+        <div class="genre-icon"><i class="fa-solid fa-headset"></i></div>
+        <div class="genre-label">JASA JOKI</div>
+      </div>
+    </div>
+
+    <div class="info-note">
+      <i class="fa-solid fa-circle-info"></i> 
+      <span>Gunakan filter untuk menyortir, & pagination di bawah</span>
+    </div>
+  </header>
+
+  <!-- ===== FILTER & SORTING ===== -->
+  <section class="filter-section">
+    <div class="filter-row">
+      <span class="filter-label">Genre:</span>
+      <div class="filter-buttons" id="genreFilter">
+        <button class="filter-btn active" data-genre="semua">Semua</button>
+        <button class="filter-btn" data-genre="akun">Akun</button>
+        <button class="filter-btn" data-genre="item">Item</button>
+        <button class="filter-btn" data-genre="joki">Jasa Joki</button>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Urutkan:</span>
+      <select id="sortSelect" class="sort-select">
+        <option value="rekomendasi">Rekomendasi</option>
+        <option value="termurah">Harga Termurah</option>
+        <option value="termahal">Harga Termahal</option>
+      </select>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Tipe:</span>
+      <div class="filter-buttons" id="typeFilter">
+        <button class="filter-btn active" data-type="semua">Semua</button>
+        <button class="filter-btn" data-type="instan">Instan</button>
+        <button class="filter-btn" data-type="otomatis">Otomatis</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DAFTAR SEMUA PRODUK ===== -->
   <main class="product-list-section">
     <h2 class="section-title">Semua Produk</h2>
-    <div class="product-grid" id="allProductGrid">
-      <!-- Bisa banyak kartu, contoh 12 kartu -->
-      <!-- Kartu 1-12 -->
-      <div class="product-card">
-        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/0f172a/ffffff?text=Produk+1');"></div>
-        <div class="product-info">
-          <div class="product-name">Nama Produk 1</div>
-          <div class="product-price">Rp 100.000</div>
-        </div>
-      </div>
-      <!-- Ulangi sebanyak yang diinginkan (misal 12) -->
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
-      <div class="product-card">...</div>
+    <div class="product-grid" id="productGrid">
+      <!-- Produk akan di-generate oleh JavaScript -->
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination" id="pagination">
+      <button class="pagination-btn" id="prevBtn" disabled>
+        <i class="fa-solid fa-arrow-left"></i> Sebelumnya
+      </button>
+      <span class="page-info" id="pageInfo">Halaman 1</span>
+      <button class="pagination-btn" id="nextBtn">
+        Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+      </button>
     </div>
 
     <!-- Tombol kembali -->
