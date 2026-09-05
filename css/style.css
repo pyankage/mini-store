@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v12)
+   STYLE.CSS - Tampilan Atas Store (Final v13)
    ============================================ */
 
 * {
@@ -420,10 +420,10 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
-/* Area gambar produk dengan rasio 16:6 */
+/* Area gambar produk dengan rasio 16:9 */
 .product-image {
   width: 100%;
-  aspect-ratio: 16 / 6;
+  aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center;
   background-color: #f1f5f9;
