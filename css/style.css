@@ -1,8 +1,7 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store
+   STYLE.CSS - Tampilan Atas Store (Revisi)
    ============================================ */
 
-/* RESET & BASE */
 * {
   margin: 0;
   padding: 0;
@@ -21,19 +20,18 @@ body {
   margin: 0;
 }
 
-/* KONTEN UTAMA — fokus pada bagian atas */
 .store-header {
   width: 100%;
   max-width: 750px;
   background: #ffffff;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  border-radius: 0 0 28px 28px;
+  border-radius: 0 0 20px 20px;
   padding: 0.9rem 1.2rem 1.2rem;
   margin: 0 auto;
   transition: all 0.2s ease;
 }
 
-/* ===== BARIS ATAS: titik3 | STORE | MASUK ===== */
+/* ===== BARIS ATAS ===== */
 .top-bar {
   display: flex;
   align-items: center;
@@ -42,7 +40,14 @@ body {
   margin-bottom: 1.2rem;
 }
 
-/* Titik tiga (kiri atas) */
+/* Grup kiri: ikon menu + STORE */
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Ikon garis tiga (hamburger) */
 .menu-dots {
   display: flex;
   align-items: center;
@@ -52,27 +57,26 @@ body {
   cursor: pointer;
   width: 44px;
   height: 44px;
-  border-radius: 16px;
+  border-radius: 12px;  /* sedikit kotak tapi tetap nyaman */
   transition: background 0.2s;
   color: #1e293b;
-  font-size: 1.6rem;
-  letter-spacing: 0.08em;
+  font-size: 1.8rem;
   line-height: 1;
 }
 
 .menu-dots i {
-  font-size: 1.9rem;
+  font-size: 1.8rem;
 }
 
 .menu-dots:hover {
   background: #f1f5f9;
 }
 
-/* Teks STORE di tengah */
+/* Teks STORE di samping ikon */
 .store-title {
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: #0f172a;
   text-transform: uppercase;
   background: linear-gradient(145deg, #1e293b 10%, #0f172a 90%);
@@ -82,7 +86,7 @@ body {
   white-space: nowrap;
 }
 
-/* Tombol MASUK kanan atas */
+/* Tombol MASUK */
 .login-btn {
   background: #0f172a;
   color: white;
@@ -90,7 +94,7 @@ body {
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.6rem 1.2rem;
-  border-radius: 40px;
+  border-radius: 10px;  /* kotak rata */
   cursor: pointer;
   letter-spacing: 0.03em;
   display: flex;
@@ -117,26 +121,26 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* ===== BAGIAN PENCARIAN ===== */
+/* ===== BAGIAN PENCARIAN (kotak rata) ===== */
 .search-section {
   display: flex;
   align-items: center;
   background: #f1f5f9;
-  border-radius: 60px;
-  padding: 0.4rem 0.4rem 0.4rem 1.2rem;
+  border-radius: 10px;  /* kotak rata, tidak membulat penuh */
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
   transition: all 0.25s;
-  border: 2px solid transparent;
+  border: 2px solid #e2e8f0;
 }
 
 .search-section:focus-within {
   background: #ffffff;
-  border-color: #cbd5e1;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-color: #94a3b8;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
 }
 
 .search-icon {
   color: #64748b;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-right: 0.6rem;
 }
 
@@ -149,13 +153,11 @@ body {
   padding: 0.7rem 0;
   color: #0f172a;
   font-weight: 500;
-  letter-spacing: 0.01em;
 }
 
 .search-input::placeholder {
   color: #94a3b8;
   font-weight: 400;
-  opacity: 0.8;
 }
 
 .search-clear {
@@ -166,7 +168,7 @@ body {
   cursor: pointer;
   padding: 0.4rem 0.7rem;
   margin-left: 4px;
-  border-radius: 30px;
+  border-radius: 8px;
   transition: background 0.2s, color 0.2s;
   display: flex;
   align-items: center;
@@ -181,8 +183,8 @@ body {
   background: #0f172a;
   color: white;
   border: none;
-  padding: 0.6rem 1.4rem;
-  border-radius: 40px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;  /* kotak rata */
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -212,7 +214,7 @@ body {
   gap: 0.4rem;
   background: #f8fafc;
   padding: 0.5rem 1rem;
-  border-radius: 30px;
+  border-radius: 10px;
   width: fit-content;
 }
 
@@ -233,7 +235,7 @@ body {
 .explanation p {
   background: #ffffff;
   padding: 0.8rem 1.2rem;
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }
 
@@ -241,22 +243,23 @@ body {
 @media (max-width: 480px) {
   .store-header {
     padding: 0.8rem 0.9rem 1rem;
-    border-radius: 0 0 22px 22px;
+    border-radius: 0 0 16px 16px;
   }
   
   .store-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   
   .login-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.9rem;
     font-size: 0.85rem;
+    border-radius: 8px;
   }
   
   .menu-dots {
-    width: 38px;
-    height: 38px;
-    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.6rem;
   }
   
   .search-btn span {
@@ -264,6 +267,6 @@ body {
   }
   
   .search-btn {
-    padding: 0.6rem 1rem;
+    padding: 0.6rem 0.8rem;
   }
 }
