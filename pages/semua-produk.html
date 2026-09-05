@@ -10,19 +10,88 @@
 </head>
 <body>
 
-  <!-- PENCARIAN (STICKY) -->
-  <div class="search-section">
-    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-    <input type="text" class="search-input" id="searchInput" placeholder="Cari produk, kategori, atau brand..." aria-label="kolom pencarian">
-    <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    <button class="search-btn" id="searchBtn" aria-label="tombol cari">
-      <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
-    </button>
+  <!-- ===== HEADER UTAMA (BARIS ATAS + DRAWER) ===== -->
+  <header class="store-header">
+    <!-- Baris atas: hamburger, STORE, MASUK -->
+    <div class="top-bar">
+      <div class="left-group">
+        <button class="menu-dots" id="menuDots" aria-label="Menu" title="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="store-title">STORE</div>
+      </div>
+      <a href="admin/login.html" class="login-btn" title="Masuk ke akun">
+        <i class="fa-solid fa-user"></i> MASUK
+      </a>
+    </div>
+
+    <!-- Pencarian (sticky) -->
+    <div class="search-section">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" class="search-input" id="searchInput" placeholder="Cari produk, kategori, atau brand..." aria-label="kolom pencarian">
+      <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button class="search-btn" id="searchBtn" aria-label="tombol cari">
+        <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== DRAWER (MENU SAMPING) ===== -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <span>Kategori</span>
+      <button class="drawer-close" id="drawerClose" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-search">
+      <i class="fa-solid fa-search"></i>
+      <input type="text" id="drawerSearchInput" placeholder="Cari kategori...">
+    </div>
+    <div class="drawer-content" id="drawerContent">
+      <button class="drawer-cat-btn" data-genre="semua">Semua</button>
+
+      <div class="drawer-category-group" data-genre="akun">
+        <div class="drawer-category-row">
+          <button class="drawer-cat-btn main" data-genre="akun">Akun</button>
+          <button class="drawer-toggle" data-target="akunSub"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="drawer-subcategory" id="akunSub" style="display:none;">
+          <button class="drawer-sub-btn" data-sub="mobile-legends">Mobile Legends</button>
+          <button class="drawer-sub-btn" data-sub="free-fire">Free Fire</button>
+          <button class="drawer-sub-btn" data-sub="pubg">PUBG</button>
+          <button class="drawer-sub-btn" data-sub="genshin">Genshin Impact</button>
+        </div>
+      </div>
+
+      <div class="drawer-category-group" data-genre="item">
+        <div class="drawer-category-row">
+          <button class="drawer-cat-btn main" data-genre="item">Item</button>
+          <button class="drawer-toggle" data-target="itemSub"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="drawer-subcategory" id="itemSub" style="display:none;">
+          <button class="drawer-sub-btn" data-sub="skin">Skin</button>
+          <button class="drawer-sub-btn" data-sub="senjata">Senjata</button>
+          <button class="drawer-sub-btn" data-sub="item-rare">Item Rare</button>
+        </div>
+      </div>
+
+      <div class="drawer-category-group" data-genre="joki">
+        <div class="drawer-category-row">
+          <button class="drawer-cat-btn main" data-genre="joki">Jasa Joki</button>
+          <button class="drawer-toggle" data-target="jokiSub"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="drawer-subcategory" id="jokiSub" style="display:none;">
+          <button class="drawer-sub-btn" data-sub="rank-push">Rank Push</button>
+          <button class="drawer-sub-btn" data-sub="leveling">Leveling</button>
+          <button class="drawer-sub-btn" data-sub="mabar">Mabar</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- FILTER (TANPA GENRE) -->
+  <!-- ===== FILTER (TANPA GENRE, HANYA URUTKAN & TIPE) ===== -->
   <section class="filter-section">
     <div class="filter-row">
       <span class="filter-label">Urutkan:</span>
@@ -43,7 +112,7 @@
     </div>
   </section>
 
-  <!-- DAFTAR SEMUA PRODUK -->
+  <!-- ===== DAFTAR SEMUA PRODUK ===== -->
   <main class="product-list-section">
     <h2 class="section-title">Semua Produk</h2>
     <div class="product-grid" id="productGrid">
