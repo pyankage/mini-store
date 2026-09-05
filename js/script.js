@@ -1,18 +1,15 @@
 // ============================================
-// SCRIPT.JS - Interaksi, Generate Produk, Filter, Pagination
+// SCRIPT.JS - Interaksi & Generate Produk + Filter
 // ============================================
 
 let allProducts = [];
-let filteredProducts = [];
-let currentPage = 1;
-const itemsPerPage = 28; // 28 produk per halaman
+let currentGenre = 'semua'; // 'semua', 'akun', 'item', 'joki'
 
 // ===== EVENT HEADER =====
 function bindHeaderEvents() {
   const searchInput = document.getElementById('searchInput');
   const clearBtn = document.getElementById('clearBtn');
   const searchBtn = document.getElementById('searchBtn');
-  const menuDots = document.getElementById('menuDots');
   const loginBtn = document.getElementById('loginBtn');
 
   if (clearBtn && searchInput) {
@@ -40,31 +37,9 @@ function bindHeaderEvents() {
     });
   }
 
-  if (menuDots) {
-    menuDots.addEventListener('click', () => {
-      alert('☰ Menu garis tiga (simulasi).');
-    });
-  }
-
   if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
-      alert('👤 Tombol MASUK (simulasi).');
-    });
+    // loginBtn adalah <a>, tidak perlu event klik karena sudah berupa tautan
   }
-
-  document.querySelectorAll('.category-card').forEach(card => {
-    card.addEventListener('click', function() {
-      const label = this.querySelector('.card-label').textContent;
-      alert('Kategori dipilih: ' + label);
-    });
-  });
-
-  document.querySelectorAll('.genre-card').forEach(card => {
-    card.addEventListener('click', function() {
-      const label = this.querySelector('.genre-label').textContent;
-      alert('Genre dipilih: ' + label);
-    });
-  });
 }
 
 // ===== DATA DUMMY =====
@@ -114,126 +89,51 @@ function renderProducts(products, gridId) {
   });
 }
 
-// ===== FILTER & SORT =====
-function applyFiltersAndSort() {
-  const genreFilter = document.querySelector('#genreFilter .filter-btn.active');
-  const typeFilter = document.querySelector('#typeFilter .filter-btn.active');
-  const sortSelect = document.getElementById('sortSelect');
-  const selectedGenre = genreFilter ? genreFilter.dataset.genre : 'semua';
-  const selectedType = typeFilter ? typeFilter.dataset.type : 'semua';
-  const sortValue = sortSelect ? sortSelect.value : 'rekomendasi';
-
-  filteredProducts = allProducts.filter(product => {
-    const matchGenre = selectedGenre === 'semua' || product.genre === selectedGenre;
-    const matchType = selectedType === 'semua' || product.type === selectedType;
-    return matchGenre && matchType;
+// ===== FILTER & RENDER =====
+function applyFilter(genre) {
+  currentGenre = genre;
+  // Update active class pada nav-cat-btn
+  document.querySelectorAll('.nav-cat-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.genre === genre);
+  });
+  // Update active class pada genre-card (jika ada)
+  document.querySelectorAll('.genre-card').forEach(card => {
+    card.classList.toggle('active', card.dataset.genre === genre);
   });
 
-  switch (sortValue) {
-    case 'termurah':
-      filteredProducts.sort((a, b) => a.price - b.price);
-      break;
-    case 'termahal':
-      filteredProducts.sort((a, b) => b.price - a.price);
-      break;
-    default:
-      filteredProducts.sort((a, b) => a.id - b.id);
+  let filtered = allProducts;
+  if (genre !== 'semua') {
+    filtered = allProducts.filter(p => p.genre === genre);
   }
-
-  currentPage = 1; // reset ke halaman pertama
-  renderPage();
-}
-
-// ===== PAGINATION =====
-function renderPage() {
-  const totalItems = filteredProducts.length;
-  const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
-  if (currentPage > totalPages) currentPage = totalPages;
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const pageItems = filteredProducts.slice(startIndex, endIndex);
-
-  renderProducts(pageItems, 'productGrid');
-
-  // Update tombol dan info
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const pageInfo = document.getElementById('pageInfo');
-  if (prevBtn) prevBtn.disabled = currentPage === 1;
-  if (nextBtn) nextBtn.disabled = currentPage === totalPages;
-  if (pageInfo) pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
-}
-
-// ===== INISIALISASI HALAMAN PRODUK =====
-function initProductPage() {
-  allProducts = createDummyProducts(50); // 50 produk dummy
-  filteredProducts = [...allProducts];
-  currentPage = 1;
-  renderPage();
-
-  // Event filter genre
-  document.querySelectorAll('#genreFilter .filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('#genreFilter .filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      applyFiltersAndSort();
-    });
-  });
-
-  // Event filter tipe
-  document.querySelectorAll('#typeFilter .filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('#typeFilter .filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      applyFiltersAndSort();
-    });
-  });
-
-  // Event sorting
-  const sortSelect = document.getElementById('sortSelect');
-  if (sortSelect) {
-    sortSelect.addEventListener('change', applyFiltersAndSort);
-  }
-
-  // Event pagination
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderPage();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  }
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderPage();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  }
+  renderProducts(filtered, 'productGrid');
 }
 
 // ===== INISIALISASI HALAMAN UTAMA =====
 function initHomePage() {
-  const products = createDummyProducts(28);
-  renderProducts(products, 'productGrid');
+  allProducts = createDummyProducts(28);
+  renderProducts(allProducts, 'productGrid');
+
+  // Event untuk nav kategori (header atas)
+  document.querySelectorAll('.nav-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyFilter(btn.dataset.genre);
+    });
+  });
+
+  // Event untuk genre-card (kotak besar)
+  document.querySelectorAll('.genre-card').forEach(card => {
+    card.addEventListener('click', () => {
+      applyFilter(card.dataset.genre);
+    });
+  });
 }
 
 // ===== DOM READY =====
 document.addEventListener('DOMContentLoaded', () => {
   bindHeaderEvents();
+
   if (document.getElementById('productGrid')) {
-    if (document.getElementById('genreFilter')) {
-      initProductPage();
-    } else {
-      initHomePage();
-    }
+    // Untuk halaman index (tanpa filter section)
+    initHomePage();
   }
 });
