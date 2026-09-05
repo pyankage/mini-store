@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Store App (Final v23)
+   STYLE.CSS - Store App (Final v24)
    ============================================ */
 
 * {
@@ -20,18 +20,18 @@ body {
   margin: 0;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER STICKY ===== */
 .store-header {
   width: 100%;
   max-width: 750px;
   background: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   border-radius: 0 0 20px 20px;
-  padding: 0.9rem 1.2rem 1rem;
+  padding: 0.9rem 1.2rem 0.6rem;
   margin: 0 auto;
-  transition: all 0.2s ease;
-  position: relative;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 /* ===== BARIS ATAS ===== */
@@ -114,11 +114,11 @@ body {
   background: #1e293b;
 }
 
-/* ===== BAGIAN PENCARIAN (STICKY) ===== */
+/* ===== BAGIAN PENCARIAN (di dalam header sticky) ===== */
 .search-section {
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background: #f1f5f9;
   border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
@@ -132,10 +132,8 @@ body {
     var(--cut) 100%,
     0 calc(100% - var(--cut))
   );
-  position: sticky;
-  top: 0;
-  z-index: 99;
   margin: 0;
+  /* Sticky sekarang dipegang oleh header, tidak perlu position sticky di sini */
 }
 
 .search-section:focus-within {
@@ -219,7 +217,7 @@ body {
   background: #1e293b;
 }
 
-/* ===== MENU GENRE (4 KOTAK) ===== */
+/* ===== MENU GENRE (di luar header, ikut scroll) ===== */
 .genre-menu {
   display: flex;
   gap: 0.6rem;
@@ -229,6 +227,12 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+  max-width: 750px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
 }
 
 .genre-menu::-webkit-scrollbar {
@@ -288,7 +292,7 @@ body {
   max-width: 90%;
 }
 
-/* ===== FILTER & SORTING BAR ===== */
+/* ===== FILTER & SORTING BAR (di luar header) ===== */
 .filter-section {
   width: 100%;
   max-width: 750px;
@@ -366,6 +370,15 @@ body {
   padding: 0.45rem 0.9rem;
   border-radius: 10px;
   width: fit-content;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
+
+.info-note i {
+  font-size: 0.9rem;
 }
 
 /* ===== SECTION DAFTAR JUALAN ===== */
@@ -501,6 +514,64 @@ body {
 .show-all-btn:hover {
   background: #1e293b;
   transform: translateY(-2px);
+}
+
+.show-all-btn.secondary {
+  background: #e2e8f0;
+  color: #0f172a;
+  box-shadow: none;
+}
+
+.show-all-btn.secondary:hover {
+  background: #cbd5e1;
+}
+
+/* ===== PAGINATION (dengan tombol chamfer dan angka) ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.pagination-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #0f172a;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s;
+  --cut: 8px;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
 }
 
 /* ===== DRAWER ===== */
@@ -700,19 +771,8 @@ body {
   .search-btn span {
     display: none;
   }
-  .filter-section {
-    padding: 0 0.9rem;
-  }
-  .filter-label {
-    min-width: 55px;
-    font-size: 0.75rem;
-  }
-  .filter-btn {
-    padding: 0.3rem 0.7rem;
-    font-size: 0.7rem;
-  }
-  .sort-select {
-    padding: 0.3rem 0.6rem;
+  .pagination-btn {
+    padding: 0.5rem 1rem;
     font-size: 0.75rem;
   }
 }
