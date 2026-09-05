@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v13)
+   STYLE.CSS - Tampilan Atas Store (Final v14)
    ============================================ */
 
 * {
@@ -20,7 +20,7 @@ body {
   margin: 0;
 }
 
-/* ===== HEADER STICKY ===== */
+/* ===== HEADER (TIDAK STICKY) ===== */
 .store-header {
   width: 100%;
   max-width: 750px;
@@ -31,9 +31,7 @@ body {
   margin: 0 auto;
   transition: all 0.2s ease;
 
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  /* Sticky dihapus agar seluruh header ikut scroll */
 }
 
 /* ===== BARIS ATAS ===== */
@@ -122,16 +120,17 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* ===== BAGIAN PENCARIAN (potongan bawah) ===== */
+/* ===== BAGIAN PENCARIAN (SEKARANG STICKY) ===== */
 .search-section {
   display: flex;
   align-items: center;
-  background: #f1f5f9;
+  background: #ffffff;           /* background solid agar menutupi konten saat sticky */
   border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
   border-radius: 0;
 
+  /* Potongan chamfer di kiri bawah & kanan bawah */
   --cut: 8px;
   clip-path: polygon(
     0 0,
@@ -141,6 +140,11 @@ body {
     var(--cut) 100%,
     0 calc(100% - var(--cut))
   );
+
+  /* Sticky hanya pada pencarian */
+  position: sticky;
+  top: 0;
+  z-index: 99;                   /* pastikan di atas konten lain */
 }
 
 .search-section:focus-within {
