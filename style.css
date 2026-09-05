@@ -1,0 +1,259 @@
+/* ----- RESET & GLOBAL ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background: #f4f6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+/* ----- CARD UTAMA ----- */
+.home-card {
+    max-width: 420px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 8px 20px rgba(0, 0, 0, 0.04);
+    padding: 24px 20px 32px;
+    transition: all 0.2s ease;
+}
+
+/* ----- HEADER: itemku + Masuk ----- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.brand {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1f2a3a;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.brand span {
+    background: #1f2a3a;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 40px;
+    margin-left: 4px;
+}
+
+.btn-masuk {
+    background: #eef1f6;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1f2a3a;
+    cursor: default;
+    letter-spacing: 0.3px;
+    transition: background 0.15s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.btn-masuk:hover {
+    background: #e2e7ef;
+}
+
+/* ----- SEARCH BAR ----- */
+.search-section {
+    margin-bottom: 28px;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: #f2f5fa;
+    border-radius: 60px;
+    padding: 6px 18px 6px 24px;
+    border: 1px solid #e9edf4;
+    transition: all 0.15s;
+}
+
+.search-wrapper:focus-within {
+    border-color: #8b9bb5;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.search-icon {
+    color: #6d7b91;
+    font-size: 18px;
+    margin-right: 12px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.search-wrapper input {
+    border: none;
+    background: transparent;
+    padding: 14px 0;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    color: #1f2a3a;
+    font-weight: 450;
+    letter-spacing: 0.2px;
+}
+
+.search-wrapper input::placeholder {
+    color: #7a8a9e;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* ----- KATEGORI GRID ----- */
+.kategori-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 16px 0 24px;
+}
+
+.kategori-item {
+    background: #f8faff;
+    border-radius: 24px;
+    padding: 14px 6px;
+    text-align: center;
+    border: 1px solid #edf2f9;
+    transition: all 0.15s;
+    cursor: default;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+
+.kategori-item:hover {
+    background: #f0f5fe;
+    border-color: #d4dceb;
+    transform: translateY(-2px);
+}
+
+.kategori-emoji {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.kategori-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2a3a;
+    letter-spacing: 0.2px;
+}
+
+/* ----- GAME LIST ----- */
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 20px 0 16px;
+}
+
+.section-title h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1b2536;
+    letter-spacing: -0.2px;
+}
+
+.section-title a {
+    color: #5b6f8c;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1.5px dotted #cbd5e3;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 12px;
+}
+
+.game-item {
+    background: #fafcff;
+    border-radius: 20px;
+    padding: 12px 6px 10px;
+    text-align: center;
+    border: 1px solid #eef3fc;
+    transition: all 0.12s;
+    cursor: default;
+}
+
+.game-item:hover {
+    background: #f2f8ff;
+    border-color: #d7e0ed;
+}
+
+.game-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.game-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202b3e;
+    letter-spacing: 0.1px;
+}
+
+.game-name small {
+    display: block;
+    font-weight: 400;
+    font-size: 11px;
+    color: #6e7f98;
+    margin-top: 2px;
+}
+
+/* ----- FOOTER ----- */
+.footer-note {
+    margin-top: 28px;
+    font-size: 13px;
+    color: #7a8a9e;
+    text-align: center;
+    border-top: 1px solid #eff2f8;
+    padding-top: 20px;
+    letter-spacing: 0.2px;
+}
+
+.footer-note span {
+    font-weight: 500;
+    color: #2d3a50;
+}
+
+/* ----- RESPONSIF ----- */
+@media (max-width: 420px) {
+    .home-card {
+        padding: 20px 16px 28px;
+    }
+    .kategori-grid {
+        gap: 8px;
+    }
+    .kategori-item {
+        padding: 12px 4px;
+    }
+    .game-grid {
+        gap: 10px;
+    }
+}
