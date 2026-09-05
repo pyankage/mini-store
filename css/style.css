@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v3)
+   STYLE.CSS - Tampilan Atas Store (Final v4)
    ============================================ */
 
 * {
@@ -46,14 +46,12 @@ body {
   margin-bottom: 0.6rem;
 }
 
-/* Grup kiri: ikon menu + STORE */
 .left-group {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 }
 
-/* Ikon garis tiga (hamburger) */
 .menu-dots {
   display: flex;
   align-items: center;
@@ -78,7 +76,6 @@ body {
   background: #f1f5f9;
 }
 
-/* Teks STORE di samping ikon */
 .store-title {
   font-size: 1.8rem;
   font-weight: 700;
@@ -92,7 +89,6 @@ body {
   white-space: nowrap;
 }
 
-/* Tombol MASUK */
 .login-btn {
   background: #0f172a;
   color: white;
@@ -127,8 +123,7 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* ===== BAGIAN PENCARIAN ===== */
-/* Kotak siku sempurna, potongan di kiri bawah & kanan bawah */
+/* ===== BAGIAN PENCARIAN (potongan bawah) ===== */
 .search-section {
   display: flex;
   align-items: center;
@@ -136,19 +131,17 @@ body {
   border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
-
-  /* Sudut siku (tidak membulat) */
   border-radius: 0;
 
-  /* Potongan chamfer hanya di bawah (kiri bawah & kanan bawah) */
-  --cut: 8px;  /* ukuran potongan */
+  /* Potongan chamfer di kiri bawah & kanan bawah */
+  --cut: 8px;
   clip-path: polygon(
-    0 0,                                  /* kiri atas */
-    100% 0,                               /* kanan atas */
-    100% calc(100% - var(--cut)),         /* kanan bawah mulai potongan */
-    calc(100% - var(--cut)) 100%,         /* bawah kanan setelah potongan */
-    var(--cut) 100%,                      /* bawah kiri setelah potongan */
-    0 calc(100% - var(--cut))             /* kiri bawah mulai potongan */
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    var(--cut) 100%,
+    0 calc(100% - var(--cut))
   );
 }
 
@@ -199,7 +192,6 @@ body {
   background: #e2e8f0;
 }
 
-/* Tombol Cari dengan potongan chamfer kecil (kiri atas & kanan bawah) */
 .search-btn {
   background: #0f172a;
   color: white;
@@ -215,7 +207,6 @@ body {
   align-items: center;
   gap: 0.3rem;
 
-  /* Potongan kecil: 8px (tetap di kiri atas & kanan bawah) */
   --cut: 8px;
   clip-path: polygon(
     var(--cut) 0,
@@ -225,7 +216,6 @@ body {
     0 100%,
     0 var(--cut)
   );
-
   border-radius: 0;
 }
 
@@ -235,6 +225,45 @@ body {
 
 .search-btn:hover {
   background: #1e293b;
+}
+
+/* ===== MENU KATEGORI HORIZONTAL (SCROLLABLE) ===== */
+.category-menu {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.6rem 0 0.2rem;
+  margin-top: 0.6rem;
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+  -webkit-overflow-scrolling: touch; /* smooth di iOS */
+}
+
+.category-menu::-webkit-scrollbar {
+  display: none;                  /* Chrome/Safari */
+}
+
+.category-item {
+  flex: 0 0 auto;
+  background: #f1f5f9;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;           /* pil shape */
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.category-item:hover {
+  background: #e2e8f0;
+}
+
+.category-item.active {
+  background: #0f172a;
+  color: white;
 }
 
 /* Keterangan kecil */
@@ -296,7 +325,7 @@ body {
   }
 
   .search-section {
-    --cut: 5px; /* potongan lebih kecil */
+    --cut: 5px;
     padding: 0.2rem 0.3rem 0.2rem 0.8rem;
     clip-path: polygon(
       0 0,
@@ -323,5 +352,10 @@ body {
       0 100%,
       0 var(--cut)
     );
+  }
+
+  .category-item {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 }
