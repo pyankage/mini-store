@@ -52,24 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Kategori utama: klik item untuk set active
-  const categoryItems = document.querySelectorAll('.category-item');
-  categoryItems.forEach(item => {
-    item.addEventListener('click', function() {
-      categoryItems.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-  // Subkategori (top up, item, key, dll): klik item untuk set active (opsional)
-  const subcategoryItems = document.querySelectorAll('.subcategory-item');
-  subcategoryItems.forEach(item => {
-    item.addEventListener('click', function() {
-      // Hanya contoh: bisa diisi aksi sesuai kebutuhan
-      alert('🔹 Menu dipilih: ' + this.textContent);
-      // (Opsional) beri efek aktif:
-      // subcategoryItems.forEach(btn => btn.style.background = '#ffffff');
-      // this.style.background = '#e2e8f0';
+  // Kartu kategori: klik untuk menampilkan nama kategori
+  const categoryCards = document.querySelectorAll('.category-card');
+  categoryCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const label = this.querySelector('.card-label').textContent;
+      alert('Kategori dipilih: ' + label);
     });
   });
 
