@@ -1,16 +1,16 @@
 // ============================================
-// SCRIPT.JS - Interaksi & Generate Produk + Filter
+// SCRIPT.JS - Interaksi, Drawer, Filter Produk
 // ============================================
 
 let allProducts = [];
-let currentGenre = 'semua'; // 'semua', 'akun', 'item', 'joki'
+let currentGenre = 'semua';
 
 // ===== EVENT HEADER =====
 function bindHeaderEvents() {
   const searchInput = document.getElementById('searchInput');
   const clearBtn = document.getElementById('clearBtn');
   const searchBtn = document.getElementById('searchBtn');
-  const loginBtn = document.getElementById('loginBtn');
+  const menuDots = document.getElementById('menuDots');
 
   if (clearBtn && searchInput) {
     clearBtn.addEventListener('click', () => {
@@ -37,8 +37,50 @@ function bindHeaderEvents() {
     });
   }
 
-  if (loginBtn) {
-    // loginBtn adalah <a>, tidak perlu event klik karena sudah berupa tautan
+  // Drawer
+  const drawer = document.getElementById('drawer');
+  const overlay = document.getElementById('drawerOverlay');
+  const drawerClose = document.getElementById('drawerClose');
+
+  if (menuDots) {
+    menuDots.addEventListener('click', () => {
+      openDrawer();
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', closeDrawer);
+  }
+
+  if (drawerClose) {
+    drawerClose.addEventListener('click', closeDrawer);
+  }
+
+  // Klik tombol kategori di drawer
+  document.querySelectorAll('.drawer-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const genre = btn.dataset.genre;
+      applyFilter(genre);
+      closeDrawer();
+    });
+  });
+}
+
+function openDrawer() {
+  const drawer = document.getElementById('drawer');
+  const overlay = document.getElementById('drawerOverlay');
+  if (drawer && overlay) {
+    drawer.classList.add('active');
+    overlay.classList.add('active');
+  }
+}
+
+function closeDrawer() {
+  const drawer = document.getElementById('drawer');
+  const overlay = document.getElementById('drawerOverlay');
+  if (drawer && overlay) {
+    drawer.classList.remove('active');
+    overlay.classList.remove('active');
   }
 }
 
@@ -92,13 +134,13 @@ function renderProducts(products, gridId) {
 // ===== FILTER & RENDER =====
 function applyFilter(genre) {
   currentGenre = genre;
-  // Update active class pada nav-cat-btn
-  document.querySelectorAll('.nav-cat-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.genre === genre);
-  });
-  // Update active class pada genre-card (jika ada)
+  // Update active class pada genre-card
   document.querySelectorAll('.genre-card').forEach(card => {
     card.classList.toggle('active', card.dataset.genre === genre);
+  });
+  // Update active class pada drawer-cat-btn
+  document.querySelectorAll('.drawer-cat-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.genre === genre);
   });
 
   let filtered = allProducts;
@@ -113,14 +155,7 @@ function initHomePage() {
   allProducts = createDummyProducts(28);
   renderProducts(allProducts, 'productGrid');
 
-  // Event untuk nav kategori (header atas)
-  document.querySelectorAll('.nav-cat-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      applyFilter(btn.dataset.genre);
-    });
-  });
-
-  // Event untuk genre-card (kotak besar)
+  // Event untuk genre-card
   document.querySelectorAll('.genre-card').forEach(card => {
     card.addEventListener('click', () => {
       applyFilter(card.dataset.genre);
@@ -131,9 +166,7 @@ function initHomePage() {
 // ===== DOM READY =====
 document.addEventListener('DOMContentLoaded', () => {
   bindHeaderEvents();
-
   if (document.getElementById('productGrid')) {
-    // Untuk halaman index (tanpa filter section)
     initHomePage();
   }
 });
