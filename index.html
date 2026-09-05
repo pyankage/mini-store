@@ -5,16 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Store • Beranda</title>
 
-  <!-- Font Awesome untuk icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- CSS eksternal -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ===== HEADER UTAMA ===== -->
+  <!-- ===== HEADER STICKY (hanya baris atas + pencarian) ===== -->
   <header class="store-header">
-    <!-- Baris atas -->
     <div class="top-bar">
       <div class="left-group">
         <button class="menu-dots" id="menuDots" aria-label="Menu" title="Menu">
@@ -27,7 +24,6 @@
       </a>
     </div>
 
-    <!-- Pencarian (sticky) -->
     <div class="search-section">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
       <input type="text" class="search-input" id="searchInput" placeholder="Cari produk, kategori, atau brand..." aria-label="kolom pencarian">
@@ -38,55 +34,9 @@
         <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
       </button>
     </div>
-
-    <!-- Genre (4 kotak) -->
-    <div class="genre-menu" id="genreMenu">
-      <div class="genre-card active" data-genre="semua">
-        <div class="genre-icon"><i class="fa-solid fa-border-all"></i></div>
-        <div class="genre-label">SEMUA</div>
-      </div>
-      <div class="genre-card" data-genre="akun">
-        <div class="genre-icon"><i class="fa-solid fa-user"></i></div>
-        <div class="genre-label">AKUN</div>
-      </div>
-      <div class="genre-card" data-genre="item">
-        <div class="genre-icon"><i class="fa-solid fa-box"></i></div>
-        <div class="genre-label">ITEM</div>
-      </div>
-      <div class="genre-card" data-genre="joki">
-        <div class="genre-icon"><i class="fa-solid fa-headset"></i></div>
-        <div class="genre-label">JASA JOKI</div>
-      </div>
-    </div>
-
-    <!-- Filter & Sorting -->
-    <section class="filter-section">
-      <div class="filter-row">
-        <span class="filter-label">Urutkan:</span>
-        <select id="sortSelect" class="sort-select">
-          <option value="rekomendasi">Rekomendasi</option>
-          <option value="termurah">Harga Termurah</option>
-          <option value="termahal">Harga Termahal</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Tipe:</span>
-        <div class="filter-buttons" id="typeFilter">
-          <button class="filter-btn active" data-type="semua">Semua</button>
-          <button class="filter-btn" data-type="instan">Instan</button>
-          <button class="filter-btn" data-type="manual">Manual</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Keterangan -->
-    <div class="info-note">
-      <i class="fa-solid fa-circle-info"></i> 
-      <span>Gunakan filter untuk menyortir produk</span>
-    </div>
   </header>
 
-  <!-- ===== DRAWER (MENU SAMPING) ===== -->
+  <!-- ===== DRAWER ===== -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <div class="drawer" id="drawer">
     <div class="drawer-header">
@@ -139,12 +89,54 @@
     </div>
   </div>
 
-  <!-- ===== DAFTAR JUALAN (28 PRODUK) ===== -->
+  <!-- ===== GENRE & FILTER (di luar header, ikut scroll) ===== -->
+  <div class="genre-menu" id="genreMenu">
+    <div class="genre-card active" data-genre="semua">
+      <div class="genre-icon"><i class="fa-solid fa-border-all"></i></div>
+      <div class="genre-label">SEMUA</div>
+    </div>
+    <div class="genre-card" data-genre="akun">
+      <div class="genre-icon"><i class="fa-solid fa-user"></i></div>
+      <div class="genre-label">AKUN</div>
+    </div>
+    <div class="genre-card" data-genre="item">
+      <div class="genre-icon"><i class="fa-solid fa-box"></i></div>
+      <div class="genre-label">ITEM</div>
+    </div>
+    <div class="genre-card" data-genre="joki">
+      <div class="genre-icon"><i class="fa-solid fa-headset"></i></div>
+      <div class="genre-label">JASA JOKI</div>
+    </div>
+  </div>
+
+  <section class="filter-section">
+    <div class="filter-row">
+      <span class="filter-label">Urutkan:</span>
+      <select id="sortSelect" class="sort-select">
+        <option value="rekomendasi">Rekomendasi</option>
+        <option value="termurah">Harga Termurah</option>
+        <option value="termahal">Harga Termahal</option>
+      </select>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Tipe:</span>
+      <div class="filter-buttons" id="typeFilter">
+        <button class="filter-btn active" data-type="semua">Semua</button>
+        <button class="filter-btn" data-type="instan">Instan</button>
+        <button class="filter-btn" data-type="manual">Manual</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-note">
+    <i class="fa-solid fa-circle-info"></i> 
+    <span>Pilih kategori untuk memfilter produk</span>
+  </div>
+
+  <!-- ===== DAFTAR JUALAN ===== -->
   <main class="product-list-section">
     <h2 class="section-title">Daftar Jualan</h2>
-    <div class="product-grid" id="productGrid">
-      <!-- Produk akan di-generate oleh JavaScript -->
-    </div>
+    <div class="product-grid" id="productGrid"></div>
 
     <div class="show-all-wrapper">
       <a href="pages/semua-produk.html" class="show-all-btn">
