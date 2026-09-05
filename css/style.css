@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v6)
+   STYLE.CSS - Tampilan Atas Store (Final v7)
    ============================================ */
 
 * {
@@ -236,7 +236,7 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
-  background: transparent;  /* kontainer transparan */
+  background: transparent;
 }
 
 .category-menu::-webkit-scrollbar {
@@ -245,8 +245,8 @@ body {
 
 /* Kartu kategori: kotak siku dengan potongan kiri atas & kanan bawah */
 .category-card {
-  flex: 0 0 auto;
-  width: 100px;
+  flex: 0 0 38%;                 /* Lebar 38% => 2.5 kartu muat */
+  max-width: 200px;              /* Batas maksimal agar tidak terlalu besar di layar lebar */
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 0;
@@ -256,15 +256,15 @@ body {
   /* Potongan chamfer: kiri atas & kanan bawah */
   --cut: 10px;
   clip-path: polygon(
-    var(--cut) 0,               /* titik 1: atas setelah potongan kiri */
-    100% 0,                     /* titik 2: kanan atas normal */
-    100% calc(100% - var(--cut)), /* titik 3: kanan bawah mulai potongan */
-    calc(100% - var(--cut)) 100%, /* titik 4: bawah setelah potongan kanan */
-    0 100%,                     /* titik 5: kiri bawah normal */
-    0 var(--cut)                /* titik 6: kiri atas mulai potongan */
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
   );
 
-  overflow: hidden;            /* pastikan gambar mengikuti bentuk */
+  overflow: hidden;
 }
 
 .category-card:hover {
@@ -272,15 +272,15 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
-/* Bagian atas kartu (area gambar) */
+/* Bagian atas kartu (area gambar) dengan rasio 4:3 */
 .card-image {
   width: 100%;
-  height: 70px;
+  aspect-ratio: 4 / 3;           /* Rasio 4:3 */
   background: #f1f5f9;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #64748b;
   transition: background 0.2s;
 }
@@ -291,9 +291,9 @@ body {
 
 /* Label di bawah gambar */
 .card-label {
-  padding: 0.45rem 0.4rem;
+  padding: 0.5rem 0.4rem;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: #0f172a;
   background: #ffffff;
@@ -391,18 +391,22 @@ body {
     );
   }
 
+  .category-menu {
+    gap: 0.5rem;
+  }
+
   .category-card {
-    width: 85px;
+    flex: 0 0 40%;               /* sedikit lebih lebar agar tetap 2.5 kartu */
+    max-width: 150px;
     --cut: 8px;
   }
 
   .card-image {
-    height: 55px;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .card-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     padding: 0.35rem 0.3rem;
   }
 }
