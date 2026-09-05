@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v2)
+   STYLE.CSS - Tampilan Atas Store (Final v3)
    ============================================ */
 
 * {
@@ -20,6 +20,7 @@ body {
   margin: 0;
 }
 
+/* ===== HEADER STICKY ===== */
 .store-header {
   width: 100%;
   max-width: 750px;
@@ -29,6 +30,11 @@ body {
   padding: 0.9rem 1.2rem 1rem;
   margin: 0 auto;
   transition: all 0.2s ease;
+
+  /* Sticky: header tetap di atas saat scroll */
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 /* ===== BARIS ATAS ===== */
@@ -122,7 +128,7 @@ body {
 }
 
 /* ===== BAGIAN PENCARIAN ===== */
-/* Kotak sempurna (sudut siku) dengan potongan chamfer di kiri atas & kanan bawah */
+/* Kotak siku sempurna, potongan di kiri bawah & kanan bawah */
 .search-section {
   display: flex;
   align-items: center;
@@ -130,19 +136,19 @@ body {
   border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
-  
-  /* Hilangkan border-radius agar siku sempurna */
+
+  /* Sudut siku (tidak membulat) */
   border-radius: 0;
-  
-  /* Potongan chamfer kecil di kiri atas & kanan bawah */
+
+  /* Potongan chamfer hanya di bawah (kiri bawah & kanan bawah) */
   --cut: 8px;  /* ukuran potongan */
   clip-path: polygon(
-    var(--cut) 0,                          /* titik 1: atas setelah potongan kiri */
-    100% 0,                                /* titik 2: kanan atas normal */
-    100% calc(100% - var(--cut)),          /* titik 3: kanan bawah mulai potongan */
-    calc(100% - var(--cut)) 100%,          /* titik 4: bawah setelah potongan kanan */
-    0 100%,                                /* titik 5: kiri bawah normal */
-    0 var(--cut)                           /* titik 6: kiri atas mulai potongan */
+    0 0,                                  /* kiri atas */
+    100% 0,                               /* kanan atas */
+    100% calc(100% - var(--cut)),         /* kanan bawah mulai potongan */
+    calc(100% - var(--cut)) 100%,         /* bawah kanan setelah potongan */
+    var(--cut) 100%,                      /* bawah kiri setelah potongan */
+    0 calc(100% - var(--cut))             /* kiri bawah mulai potongan */
   );
 }
 
@@ -182,7 +188,7 @@ body {
   cursor: pointer;
   padding: 0.3rem 0.6rem;
   margin-left: 2px;
-  border-radius: 0;  /* disamakan siku */
+  border-radius: 0;
   transition: background 0.2s, color 0.2s;
   display: flex;
   align-items: center;
@@ -208,8 +214,8 @@ body {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  
-  /* Potongan kecil: 8px (konsisten dengan kontainer) */
+
+  /* Potongan kecil: 8px (tetap di kiri atas & kanan bawah) */
   --cut: 8px;
   clip-path: polygon(
     var(--cut) 0,
@@ -219,8 +225,8 @@ body {
     0 100%,
     0 var(--cut)
   );
-  
-  border-radius: 0; /* siku */
+
+  border-radius: 0;
 }
 
 .search-btn i {
@@ -272,43 +278,43 @@ body {
     padding: 0.8rem 0.9rem 0.8rem;
     border-radius: 0 0 16px 16px;
   }
-  
+
   .store-title {
     font-size: 1.5rem;
   }
-  
+
   .login-btn {
     padding: 0.5rem 0.9rem;
     font-size: 0.85rem;
     border-radius: 8px;
   }
-  
+
   .menu-dots {
     width: 40px;
     height: 40px;
     font-size: 1.6rem;
   }
-  
+
   .search-section {
-    --cut: 5px; /* potongan lebih kecil di layar sempit */
+    --cut: 5px; /* potongan lebih kecil */
     padding: 0.2rem 0.3rem 0.2rem 0.8rem;
     clip-path: polygon(
-      var(--cut) 0,
+      0 0,
       100% 0,
       100% calc(100% - var(--cut)),
       calc(100% - var(--cut)) 100%,
-      0 100%,
-      0 var(--cut)
+      var(--cut) 100%,
+      0 calc(100% - var(--cut))
     );
   }
-  
+
   .search-btn span {
     display: none;
   }
-  
+
   .search-btn {
     padding: 0.45rem 0.8rem;
-    --cut: 5px; /* konsisten dengan kontainer */
+    --cut: 5px;
     clip-path: polygon(
       var(--cut) 0,
       100% 0,
