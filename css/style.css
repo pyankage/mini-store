@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Store App (Final v15)
+   STYLE.CSS - Store App (Final v16)
    ============================================ */
 
 * {
@@ -122,13 +122,12 @@ body {
 .search-section {
   display: flex;
   align-items: center;
-  background: #ffffff;           /* solid agar menutupi saat sticky */
+  background: #ffffff;
   border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
   border-radius: 0;
 
-  /* Potongan chamfer di kiri bawah & kanan bawah */
   --cut: 8px;
   clip-path: polygon(
     0 0,
@@ -139,7 +138,6 @@ body {
     0 calc(100% - var(--cut))
   );
 
-  /* Sticky hanya pencarian */
   position: sticky;
   top: 0;
   z-index: 99;
@@ -227,7 +225,7 @@ body {
   background: #1e293b;
 }
 
-/* ===== MENU KATEGORI HORIZONTAL (5 KARTU BESAR) ===== */
+/* ===== MENU KATEGORI HORIZONTAL ===== */
 .category-menu {
   display: flex;
   gap: 0.8rem;
@@ -252,7 +250,7 @@ body {
   border-radius: 0;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  
+
   --cut: 10px;
   clip-path: polygon(
     var(--cut) 0,
@@ -300,7 +298,7 @@ body {
   text-overflow: ellipsis;
 }
 
-/* ===== MENU GENRE (3 KOTAK KECIL RASIO 1:1) ===== */
+/* ===== MENU GENRE ===== */
 .genre-menu {
   display: flex;
   gap: 0.6rem;
@@ -325,7 +323,7 @@ body {
   border-radius: 0;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  
+
   --cut: 6px;
   clip-path: polygon(
     var(--cut) 0,
@@ -384,6 +382,72 @@ body {
   font-size: 0.9rem;
 }
 
+/* ===== FILTER & SORTING BAR ===== */
+.filter-section {
+  width: 100%;
+  max-width: 750px;
+  margin: 1rem auto 0;
+  padding: 0 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f172a;
+  min-width: 70px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  background: #e2e8f0;
+}
+
+.filter-btn.active {
+  background: #0f172a;
+  color: white;
+  border-color: #0f172a;
+}
+
+.sort-select {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #0f172a;
+  cursor: pointer;
+  outline: none;
+}
+
 /* ===== SECTION DAFTAR JUALAN ===== */
 .product-list-section {
   width: 100%;
@@ -422,13 +486,23 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
-/* Area gambar produk dengan rasio 16:9 */
+/* Area gambar produk dengan rasio 16:9 + potongan kiri atas & kanan bawah */
 .product-image {
   width: 100%;
   aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center;
   background-color: #f1f5f9;
+
+  --cut: 10px;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
 }
 
 /* Info produk */
@@ -452,6 +526,32 @@ body {
   font-size: 0.85rem;
   font-weight: 700;
   color: #0f172a;
+}
+
+/* Badge genre & tipe */
+.product-meta {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+.badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.badge-genre {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.badge-type {
+  background: #dbeafe;
+  color: #1e40af;
 }
 
 /* ===== TOMBOL TAMPILKAN SEMUANYA ===== */
@@ -490,6 +590,45 @@ body {
 
 .show-all-btn.secondary:hover {
   background: #cbd5e1;
+}
+
+/* ===== PAGINATION ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.pagination-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #0f172a;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
 }
 
 /* ===== PENJELASAN TAMBAHAN ===== */
@@ -613,6 +752,27 @@ body {
 
   .product-name,
   .product-price {
+    font-size: 0.75rem;
+  }
+
+  .filter-section {
+    padding: 0 0.9rem;
+  }
+  .filter-label {
+    min-width: 55px;
+    font-size: 0.75rem;
+  }
+  .filter-btn {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+  }
+  .sort-select {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .pagination-btn {
+    padding: 0.5rem 1rem;
     font-size: 0.75rem;
   }
 }
