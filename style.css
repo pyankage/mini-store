@@ -1,158 +1,269 @@
+/* ============================================
+   STYLE.CSS - Tampilan Atas Store
+   ============================================ */
+
+/* RESET & BASE */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: #e8ecf1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+  background: #f5f7fb;
+  font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
-.home-card {
-    max-width: 400px;
-    width: 100%;
-    background: #ffffff;
-    border-radius: 28px;
-    padding: 20px 18px 24px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+/* KONTEN UTAMA — fokus pada bagian atas */
+.store-header {
+  width: 100%;
+  max-width: 750px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  border-radius: 0 0 28px 28px;
+  padding: 0.9rem 1.2rem 1.2rem;
+  margin: 0 auto;
+  transition: all 0.2s ease;
 }
 
-/* ===== HEADER ===== */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+/* ===== BARIS ATAS: titik3 | STORE | MASUK ===== */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
 }
 
-.brand {
-    font-size: 28px;
-    font-weight: 800;
-    color: #1a2332;
-    letter-spacing: -0.5px;
+/* Titik tiga (kiri atas) */
+.menu-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  transition: background 0.2s;
+  color: #1e293b;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
 }
 
-.btn-masuk {
-    background: #eef2f7;
-    border: none;
-    padding: 8px 24px;
-    border-radius: 30px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #1a2332;
-    cursor: pointer;
-    transition: background 0.2s;
+.menu-dots i {
+  font-size: 1.9rem;
 }
 
-.btn-masuk:hover {
-    background: #dce3ec;
+.menu-dots:hover {
+  background: #f1f5f9;
 }
 
-/* ===== SEARCH ===== */
+/* Teks STORE di tengah */
+.store-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #0f172a;
+  text-transform: uppercase;
+  background: linear-gradient(145deg, #1e293b 10%, #0f172a 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+/* Tombol MASUK kanan atas */
+.login-btn {
+  background: #0f172a;
+  color: white;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 40px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.15);
+  white-space: nowrap;
+}
+
+.login-btn i {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.login-btn:hover {
+  background: #1e293b;
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
+  transform: translateY(-1px);
+}
+
+.login-btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== BAGIAN PENCARIAN ===== */
 .search-section {
-    margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  border-radius: 60px;
+  padding: 0.4rem 0.4rem 0.4rem 1.2rem;
+  transition: all 0.25s;
+  border: 2px solid transparent;
 }
 
-.search-wrapper {
-    display: flex;
-    align-items: center;
-    background: #f2f5fa;
-    border-radius: 50px;
-    padding: 4px 16px 4px 20px;
-    border: 2px solid #e8ecf3;
-    transition: all 0.2s;
-}
-
-.search-wrapper:focus-within {
-    border-color: #b0c0d4;
-    background: #ffffff;
+.search-section:focus-within {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .search-icon {
-    font-size: 16px;
-    color: #8899b0;
-    margin-right: 10px;
+  color: #64748b;
+  font-size: 1.2rem;
+  margin-right: 0.6rem;
 }
 
-.search-wrapper input {
-    border: none;
-    background: transparent;
-    padding: 12px 0;
-    font-size: 15px;
-    width: 100%;
-    outline: none;
-    color: #1a2332;
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.7rem 0;
+  color: #0f172a;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
-.search-wrapper input::placeholder {
-    color: #99a9be;
-    font-weight: 400;
+.search-input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+  opacity: 0.8;
 }
 
-/* ===== KATEGORI ===== */
-.kategori-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 24px;
+.search-clear {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  margin-left: 4px;
+  border-radius: 30px;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
 }
 
-.kategori-item {
-    background: #f6f9fe;
-    border-radius: 20px;
-    padding: 14px 6px;
-    text-align: center;
-    border: 1px solid #eef3fa;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a2332;
-    cursor: pointer;
-    transition: all 0.15s;
+.search-clear:hover {
+  color: #334155;
+  background: #e2e8f0;
 }
 
-.kategori-item:hover {
-    background: #edf3fc;
-    border-color: #d5dfed;
-    transform: translateY(-1px);
+.search-btn {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-/* ===== BAGIAN TENGAH (KOSONG) ===== */
-.content-center {
-    min-height: 120px;
-    margin-bottom: 20px;
-    /* Bisa diisi dengan apapun nanti */
+.search-btn i {
+  font-size: 0.85rem;
 }
 
-/* ===== FOOTER ===== */
-.footer-note {
-    font-size: 13px;
-    color: #7a8da8;
-    text-align: center;
-    border-top: 1px solid #eff2f8;
-    padding-top: 18px;
+.search-btn:hover {
+  background: #1e293b;
 }
 
-.footer-note span {
-    font-weight: 600;
-    color: #1a2332;
+/* Keterangan kecil */
+.info-note {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f8fafc;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  width: fit-content;
 }
 
-/* ===== RESPONSIF ===== */
-@media (max-width: 380px) {
-    .home-card {
-        padding: 16px 12px 20px;
-    }
-    .kategori-grid {
-        gap: 6px;
-    }
-    .kategori-item {
-        padding: 10px 4px;
-        font-size: 12px;
-    }
+.info-note i {
+  font-size: 0.9rem;
+}
+
+/* Penjelasan tambahan */
+.explanation {
+  max-width: 750px;
+  margin: 1.2rem auto;
+  padding: 0 1.2rem;
+  color: #334155;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.explanation p {
+  background: #ffffff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .store-header {
+    padding: 0.8rem 0.9rem 1rem;
+    border-radius: 0 0 22px 22px;
+  }
+  
+  .store-title {
+    font-size: 1.6rem;
+  }
+  
+  .login-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .menu-dots {
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+  }
+  
+  .search-btn span {
+    display: none;
+  }
+  
+  .search-btn {
+    padding: 0.6rem 1rem;
+  }
 }
