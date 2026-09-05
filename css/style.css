@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final)
+   STYLE.CSS - Tampilan Atas Store (Final v2)
    ============================================ */
 
 * {
@@ -122,14 +122,28 @@ body {
 }
 
 /* ===== BAGIAN PENCARIAN ===== */
+/* Kotak sempurna (sudut siku) dengan potongan chamfer di kiri atas & kanan bawah */
 .search-section {
   display: flex;
   align-items: center;
   background: #f1f5f9;
-  border-radius: 8px;
+  border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
-  border: 2px solid #e2e8f0;
+  
+  /* Hilangkan border-radius agar siku sempurna */
+  border-radius: 0;
+  
+  /* Potongan chamfer kecil di kiri atas & kanan bawah */
+  --cut: 8px;  /* ukuran potongan */
+  clip-path: polygon(
+    var(--cut) 0,                          /* titik 1: atas setelah potongan kiri */
+    100% 0,                                /* titik 2: kanan atas normal */
+    100% calc(100% - var(--cut)),          /* titik 3: kanan bawah mulai potongan */
+    calc(100% - var(--cut)) 100%,          /* titik 4: bawah setelah potongan kanan */
+    0 100%,                                /* titik 5: kiri bawah normal */
+    0 var(--cut)                           /* titik 6: kiri atas mulai potongan */
+  );
 }
 
 .search-section:focus-within {
@@ -168,7 +182,7 @@ body {
   cursor: pointer;
   padding: 0.3rem 0.6rem;
   margin-left: 2px;
-  border-radius: 6px;
+  border-radius: 0;  /* disamakan siku */
   transition: background 0.2s, color 0.2s;
   display: flex;
   align-items: center;
@@ -195,7 +209,7 @@ body {
   align-items: center;
   gap: 0.3rem;
   
-  /* Potongan kecil: 8px */
+  /* Potongan kecil: 8px (konsisten dengan kontainer) */
   --cut: 8px;
   clip-path: polygon(
     var(--cut) 0,
@@ -206,7 +220,7 @@ body {
     0 var(--cut)
   );
   
-  border-radius: 4px; /* fallback */
+  border-radius: 0; /* siku */
 }
 
 .search-btn i {
@@ -275,13 +289,26 @@ body {
     font-size: 1.6rem;
   }
   
+  .search-section {
+    --cut: 5px; /* potongan lebih kecil di layar sempit */
+    padding: 0.2rem 0.3rem 0.2rem 0.8rem;
+    clip-path: polygon(
+      var(--cut) 0,
+      100% 0,
+      100% calc(100% - var(--cut)),
+      calc(100% - var(--cut)) 100%,
+      0 100%,
+      0 var(--cut)
+    );
+  }
+  
   .search-btn span {
     display: none;
   }
   
   .search-btn {
     padding: 0.45rem 0.8rem;
-    --cut: 5px; /* potongan lebih kecil di mobile */
+    --cut: 5px; /* konsisten dengan kontainer */
     clip-path: polygon(
       var(--cut) 0,
       100% 0,
