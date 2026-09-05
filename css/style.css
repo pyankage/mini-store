@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Revisi 3)
+   STYLE.CSS - Tampilan Atas Store (Revisi Final)
    ============================================ */
 
 * {
@@ -179,7 +179,7 @@ body {
   background: #e2e8f0;
 }
 
-/* Tombol Cari dengan OPPOSITE CUT-CORNER (sudut kiri atas terpotong) */
+/* Tombol Cari dengan CUT-CORNER DUA SUDUT: KIRI ATAS & KANAN BAWAH */
 .search-btn {
   background: #0f172a;
   color: white;
@@ -189,21 +189,24 @@ body {
   font-size: 0.9rem;
   cursor: pointer;
   letter-spacing: 0.02em;
-  transition: background 0.2s, clip-path 0.2s;
+  transition: background 0.2s;
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 0.3rem;
   
-  /* Opposite cut-corner: potong sudut kiri atas */
+  /* Potongan diagonal: kiri atas & kanan bawah */
+  --cut: 12px;  /* ukuran potongan */
   clip-path: polygon(
-    12px 0,              /* mulai dari x=12px di sisi atas (potongan) */
-    100% 0,              /* kanan atas */
-    100% 100%,           /* kanan bawah */
-    0 100%,              /* kiri bawah */
-    0 12px               /* sisi kiri dengan tinggi potongan */
+    var(--cut) 0,                          /* titik 1: atas setelah potongan kiri */
+    100% 0,                                /* titik 2: kanan atas normal */
+    100% calc(100% - var(--cut)),          /* titik 3: kanan bawah mulai potongan */
+    calc(100% - var(--cut)) 100%,          /* titik 4: bawah setelah potongan kanan */
+    0 100%,                                /* titik 5: kiri bawah normal */
+    0 var(--cut)                           /* titik 6: kiri atas mulai potongan */
   );
-  border-radius: 4px;    /* fallback bila clip-path tidak didukung */
+  
+  border-radius: 4px; /* fallback */
 }
 
 .search-btn i {
@@ -278,13 +281,14 @@ body {
   
   .search-btn {
     padding: 0.45rem 0.8rem;
-    /* potongan lebih kecil di layar sempit */
+    --cut: 8px;  /* potongan lebih kecil di layar sempit */
     clip-path: polygon(
-      10px 0,
+      var(--cut) 0,
       100% 0,
-      100% 100%,
+      100% calc(100% - var(--cut)),
+      calc(100% - var(--cut)) 100%,
       0 100%,
-      0 10px
+      0 var(--cut)
     );
   }
 }
