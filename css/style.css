@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Revisi 2)
+   STYLE.CSS - Tampilan Atas Store (Revisi 3)
    ============================================ */
 
 * {
@@ -37,7 +37,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
-  margin-bottom: 0.6rem;  /* dikurangi agar pencarian naik */
+  margin-bottom: 0.6rem;  /* pencarian dekat dengan baris atas */
 }
 
 /* Grup kiri: ikon menu + STORE */
@@ -126,8 +126,8 @@ body {
   display: flex;
   align-items: center;
   background: #f1f5f9;
-  border-radius: 8px;          /* sudut kotak rata */
-  padding: 0.2rem 0.3rem 0.2rem 0.8rem;   /* tinggi diperkecil */
+  border-radius: 8px;
+  padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
   border: 2px solid #e2e8f0;
 }
@@ -149,8 +149,8 @@ body {
   background: transparent;
   border: none;
   outline: none;
-  font-size: 0.95rem;          /* sedikit lebih kecil agar ramping */
-  padding: 0.45rem 0;          /* vertikal dikurangi */
+  font-size: 0.95rem;
+  padding: 0.45rem 0;
   color: #0f172a;
   font-weight: 500;
 }
@@ -179,12 +179,12 @@ body {
   background: #e2e8f0;
 }
 
-/* Tombol Cari dengan Cut-Corner (sudut kanan bawah terpotong) */
+/* Tombol Cari dengan OPPOSITE CUT-CORNER (sudut kiri atas terpotong) */
 .search-btn {
   background: #0f172a;
   color: white;
   border: none;
-  padding: 0.5rem 1.2rem 0.5rem 1.2rem;  /* padding disesuaikan */
+  padding: 0.5rem 1.2rem 0.5rem 1.2rem;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -195,15 +195,15 @@ body {
   align-items: center;
   gap: 0.3rem;
   
-  /* Cut-corner effect: potong sudut kanan bawah */
+  /* Opposite cut-corner: potong sudut kiri atas */
   clip-path: polygon(
-    0 0,                /* kiri atas */
-    100% 0,             /* kanan atas */
-    100% calc(100% - 12px), /* kanan bawah sedikit naik */
-    calc(100% - 12px) 100%, /* bawah kanan dipotong */
-    0 100%              /* kiri bawah */
+    12px 0,              /* mulai dari x=12px di sisi atas (potongan) */
+    100% 0,              /* kanan atas */
+    100% 100%,           /* kanan bawah */
+    0 100%,              /* kiri bawah */
+    0 12px               /* sisi kiri dengan tinggi potongan */
   );
-  border-radius: 4px;   /* fallback, clip-path akan override */
+  border-radius: 4px;    /* fallback bila clip-path tidak didukung */
 }
 
 .search-btn i {
@@ -216,7 +216,7 @@ body {
 
 /* Keterangan kecil */
 .info-note {
-  margin-top: 0.8rem;    /* sedikit rapat ke atas */
+  margin-top: 0.8rem;
   font-size: 0.8rem;
   color: #64748b;
   display: flex;
@@ -278,12 +278,13 @@ body {
   
   .search-btn {
     padding: 0.45rem 0.8rem;
+    /* potongan lebih kecil di layar sempit */
     clip-path: polygon(
-      0 0,
+      10px 0,
       100% 0,
-      100% calc(100% - 10px),
-      calc(100% - 10px) 100%,
-      0 100%
+      100% 100%,
+      0 100%,
+      0 10px
     );
   }
 }
