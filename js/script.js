@@ -4,7 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   
-  // Ambil elemen
   const searchInput = document.getElementById('searchInput');
   const clearBtn = document.getElementById('clearBtn');
   const searchBtn = document.getElementById('searchBtn');
@@ -42,15 +41,36 @@ document.addEventListener('DOMContentLoaded', function() {
   // Menu garis tiga
   if (menuDots) {
     menuDots.addEventListener('click', function() {
-      alert('☰ Menu garis tiga di kiri atas (simulasi).\nSilakan tambahkan navigasi sesuai kebutuhan.');
+      alert('☰ Menu garis tiga di kiri atas (simulasi).');
     });
   }
 
   // Tombol Masuk
   if (loginBtn) {
     loginBtn.addEventListener('click', function() {
-      alert('👤 Tombol MASUK di kanan atas (simulasi).\nHalaman login dapat ditambahkan di sini.');
+      alert('👤 Tombol MASUK di kanan atas (simulasi).');
     });
   }
+
+  // Kategori utama: klik item untuk set active
+  const categoryItems = document.querySelectorAll('.category-item');
+  categoryItems.forEach(item => {
+    item.addEventListener('click', function() {
+      categoryItems.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Subkategori (top up, item, key, dll): klik item untuk set active (opsional)
+  const subcategoryItems = document.querySelectorAll('.subcategory-item');
+  subcategoryItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Hanya contoh: bisa diisi aksi sesuai kebutuhan
+      alert('🔹 Menu dipilih: ' + this.textContent);
+      // (Opsional) beri efek aktif:
+      // subcategoryItems.forEach(btn => btn.style.background = '#ffffff');
+      // this.style.background = '#e2e8f0';
+    });
+  });
 
 });
