@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v4)
+   STYLE.CSS - Tampilan Atas Store (Final v5)
    ============================================ */
 
 * {
@@ -31,7 +31,6 @@ body {
   margin: 0 auto;
   transition: all 0.2s ease;
 
-  /* Sticky: header tetap di atas saat scroll */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -133,7 +132,6 @@ body {
   transition: all 0.25s;
   border-radius: 0;
 
-  /* Potongan chamfer di kiri bawah & kanan bawah */
   --cut: 8px;
   clip-path: polygon(
     0 0,
@@ -227,8 +225,10 @@ body {
   background: #1e293b;
 }
 
-/* ===== MENU KATEGORI HORIZONTAL (SCROLLABLE) ===== */
-.category-menu {
+/* ===== MENU HORIZONTAL (SCROLLABLE) ===== */
+/* Menu kategori pertama */
+.category-menu,
+.subcategory-menu {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
@@ -239,16 +239,18 @@ body {
   -webkit-overflow-scrolling: touch; /* smooth di iOS */
 }
 
-.category-menu::-webkit-scrollbar {
+.category-menu::-webkit-scrollbar,
+.subcategory-menu::-webkit-scrollbar {
   display: none;                  /* Chrome/Safari */
 }
 
+/* Item menu pertama (kategori utama) */
 .category-item {
   flex: 0 0 auto;
   background: #f1f5f9;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 20px;           /* pil shape */
+  border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 500;
   color: #334155;
@@ -264,6 +266,30 @@ body {
 .category-item.active {
   background: #0f172a;
   color: white;
+}
+
+/* Item menu kedua (top up, item, key, dll) */
+.subcategory-menu {
+  margin-top: 0.4rem;
+}
+
+.subcategory-item {
+  flex: 0 0 auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 0.45rem 1rem;
+  border-radius: 18px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #1e293b;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.subcategory-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 /* Keterangan kecil */
@@ -354,8 +380,9 @@ body {
     );
   }
 
-  .category-item {
+  .category-item,
+  .subcategory-item {
     padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 }
