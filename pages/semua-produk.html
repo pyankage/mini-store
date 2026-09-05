@@ -10,60 +10,56 @@
 </head>
 <body>
 
-  <!-- ===== STICKY HEADER: PENCARIAN + FILTER ===== -->
-  <div class="sticky-header">
-    <!-- Pencarian -->
-    <div class="search-section">
-      <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input type="text" class="search-input" id="searchInput" placeholder="Cari produk, kategori, atau brand..." aria-label="kolom pencarian">
-      <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <button class="search-btn" id="searchBtn" aria-label="tombol cari">
-        <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
-      </button>
-    </div>
-
-    <!-- Filter & Sorting -->
-    <section class="filter-section">
-      <div class="filter-row">
-        <span class="filter-label">Genre:</span>
-        <div class="filter-buttons" id="genreFilter">
-          <button class="filter-btn active" data-genre="semua">Semua</button>
-          <button class="filter-btn" data-genre="akun">Akun</button>
-          <button class="filter-btn" data-genre="item">Item</button>
-          <button class="filter-btn" data-genre="joki">Jasa Joki</button>
-        </div>
-      </div>
-
-      <div class="filter-row">
-        <span class="filter-label">Urutkan:</span>
-        <select id="sortSelect" class="sort-select">
-          <option value="rekomendasi">Rekomendasi</option>
-          <option value="termurah">Harga Termurah</option>
-          <option value="termahal">Harga Termahal</option>
-        </select>
-      </div>
-
-      <div class="filter-row">
-        <span class="filter-label">Tipe:</span>
-        <div class="filter-buttons" id="typeFilter">
-          <button class="filter-btn active" data-type="semua">Semua</button>
-          <button class="filter-btn" data-type="instan">Instan</button>
-          <button class="filter-btn" data-type="otomatis">Otomatis</button>
-        </div>
-      </div>
-    </section>
+  <!-- PENCARIAN (STICKY) -->
+  <div class="search-section">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    <input type="text" class="search-input" id="searchInput" placeholder="Cari produk, kategori, atau brand..." aria-label="kolom pencarian">
+    <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <button class="search-btn" id="searchBtn" aria-label="tombol cari">
+      <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
+    </button>
   </div>
 
-  <!-- ===== DAFTAR SEMUA PRODUK ===== -->
+  <!-- FILTER (TIDAK STICKY) -->
+  <section class="filter-section">
+    <div class="filter-row">
+      <span class="filter-label">Genre:</span>
+      <div class="filter-buttons" id="genreFilter">
+        <button class="filter-btn active" data-genre="semua">Semua</button>
+        <button class="filter-btn" data-genre="akun">Akun</button>
+        <button class="filter-btn" data-genre="item">Item</button>
+        <button class="filter-btn" data-genre="joki">Jasa Joki</button>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Urutkan:</span>
+      <select id="sortSelect" class="sort-select">
+        <option value="rekomendasi">Rekomendasi</option>
+        <option value="termurah">Harga Termurah</option>
+        <option value="termahal">Harga Termahal</option>
+      </select>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Tipe:</span>
+      <div class="filter-buttons" id="typeFilter">
+        <button class="filter-btn active" data-type="semua">Semua</button>
+        <button class="filter-btn" data-type="instan">Instan</button>
+        <button class="filter-btn" data-type="otomatis">Otomatis</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAFTAR SEMUA PRODUK -->
   <main class="product-list-section">
     <h2 class="section-title">Semua Produk</h2>
     <div class="product-grid" id="productGrid">
       <!-- Produk di-generate oleh JavaScript -->
     </div>
 
-    <!-- Pagination -->
     <div class="pagination" id="pagination">
       <button class="pagination-btn" id="prevBtn" disabled>
         <i class="fa-solid fa-arrow-left"></i> Sebelumnya
@@ -74,7 +70,6 @@
       </button>
     </div>
 
-    <!-- Tombol kembali -->
     <div class="show-all-wrapper">
       <a href="../index.html" class="show-all-btn secondary">
         <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
