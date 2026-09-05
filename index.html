@@ -12,28 +12,24 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- HEADER UTAMA -->
+  <!-- HEADER UTAMA (STICKY) -->
   <header class="store-header">
     
     <!-- BARIS ATAS: [garis3 + STORE] di kiri | MASUK di kanan -->
     <div class="top-bar">
-      <!-- Grup kiri: ikon menu + judul STORE -->
       <div class="left-group">
-        <!-- Ikon garis tiga (hamburger) -->
         <button class="menu-dots" id="menuDots" aria-label="Menu garis tiga" title="Menu utama">
           <i class="fa-solid fa-bars"></i>
         </button>
-        <!-- Teks STORE di samping ikon -->
         <div class="store-title">STORE</div>
       </div>
 
-      <!-- Tombol MASUK di kanan atas -->
       <button class="login-btn" id="loginBtn" title="Masuk ke akun">
         <i class="fa-solid fa-user"></i> MASUK
       </button>
     </div>
 
-    <!-- BAGIAN PENCARIAN (kotak rata) -->
+    <!-- BAGIAN PENCARIAN (kotak siku, potongan bawah) -->
     <div class="search-section">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
       <input 
@@ -51,21 +47,34 @@
       </button>
     </div>
 
-    <!-- KETERANGAN SINGKAT (sesuai permintaan) -->
+    <!-- MENU KATEGORI HORIZONTAL (bisa digeser) -->
+    <div class="category-menu" id="categoryMenu">
+      <button class="category-item active">Semua</button>
+      <button class="category-item">Elektronik</button>
+      <button class="category-item">Fashion</button>
+      <button class="category-item">Makanan</button>
+      <button class="category-item">Minuman</button>
+      <button class="category-item">Kecantikan</button>
+      <button class="category-item">Olahraga</button>
+      <button class="category-item">Buku</button>
+      <button class="category-item">Mainan</button>
+      <button class="category-item">Lainnya</button>
+    </div>
+
+    <!-- KETERANGAN SINGKAT -->
     <div class="info-note">
       <i class="fa-solid fa-circle-info"></i> 
-      <span>Kiri: <strong>☰ + STORE</strong> • Kanan: <strong>MASUK</strong> • Bawah: <strong>pencarian kotak</strong></span>
+      <span>Kiri: <strong>☰ + STORE</strong> • Kanan: <strong>MASUK</strong> • Bawah: <strong>pencarian + menu geser</strong></span>
     </div>
   </header>
 
   <!-- PENJELASAN TAMBAHAN -->
   <div class="explanation">
     <p>
-      🧩 <strong>Penjelasan tampilan atas:</strong> 
-      Ikon garis tiga (<i class="fa-solid fa-bars"></i>) di pojok kiri atas sebagai menu navigasi, 
-      tepat di sampingnya ada teks <strong>STORE</strong>. 
-      Tombol <strong>MASUK</strong> berada di pojok kanan atas. 
-      Di bawahnya ada <strong>kolom pencarian</strong> dengan desain kotak rata.
+      🧩 <strong>Penjelasan:</strong> 
+      Ikon garis tiga (<i class="fa-solid fa-bars"></i>) di pojok kiri atas, teks <strong>STORE</strong> di sampingnya, 
+      tombol <strong>MASUK</strong> di kanan. Di bawahnya terdapat kolom pencarian dengan potongan bawah, 
+      lalu menu kategori yang bisa digeser ke kanan/kiri. Seluruh header tetap menempel saat scroll.
     </p>
   </div>
 
