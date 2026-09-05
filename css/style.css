@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Revisi)
+   STYLE.CSS - Tampilan Atas Store (Revisi 2)
    ============================================ */
 
 * {
@@ -26,7 +26,7 @@ body {
   background: #ffffff;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   border-radius: 0 0 20px 20px;
-  padding: 0.9rem 1.2rem 1.2rem;
+  padding: 0.9rem 1.2rem 1rem;
   margin: 0 auto;
   transition: all 0.2s ease;
 }
@@ -37,7 +37,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.6rem;  /* dikurangi agar pencarian naik */
 }
 
 /* Grup kiri: ikon menu + STORE */
@@ -57,7 +57,7 @@ body {
   cursor: pointer;
   width: 44px;
   height: 44px;
-  border-radius: 12px;  /* sedikit kotak tapi tetap nyaman */
+  border-radius: 12px;
   transition: background 0.2s;
   color: #1e293b;
   font-size: 1.8rem;
@@ -94,7 +94,7 @@ body {
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.6rem 1.2rem;
-  border-radius: 10px;  /* kotak rata */
+  border-radius: 10px;
   cursor: pointer;
   letter-spacing: 0.03em;
   display: flex;
@@ -121,13 +121,13 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* ===== BAGIAN PENCARIAN (kotak rata) ===== */
+/* ===== BAGIAN PENCARIAN (ramping, naik, kotak rata) ===== */
 .search-section {
   display: flex;
   align-items: center;
   background: #f1f5f9;
-  border-radius: 10px;  /* kotak rata, tidak membulat penuh */
-  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  border-radius: 8px;          /* sudut kotak rata */
+  padding: 0.2rem 0.3rem 0.2rem 0.8rem;   /* tinggi diperkecil */
   transition: all 0.25s;
   border: 2px solid #e2e8f0;
 }
@@ -135,13 +135,13 @@ body {
 .search-section:focus-within {
   background: #ffffff;
   border-color: #94a3b8;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .search-icon {
   color: #64748b;
-  font-size: 1.1rem;
-  margin-right: 0.6rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
 }
 
 .search-input {
@@ -149,8 +149,8 @@ body {
   background: transparent;
   border: none;
   outline: none;
-  font-size: 1rem;
-  padding: 0.7rem 0;
+  font-size: 0.95rem;          /* sedikit lebih kecil agar ramping */
+  padding: 0.45rem 0;          /* vertikal dikurangi */
   color: #0f172a;
   font-weight: 500;
 }
@@ -164,11 +164,11 @@ body {
   background: transparent;
   border: none;
   color: #94a3b8;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
-  padding: 0.4rem 0.7rem;
-  margin-left: 4px;
-  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+  margin-left: 2px;
+  border-radius: 6px;
   transition: background 0.2s, color 0.2s;
   display: flex;
   align-items: center;
@@ -179,21 +179,31 @@ body {
   background: #e2e8f0;
 }
 
+/* Tombol Cari dengan Cut-Corner (sudut kanan bawah terpotong) */
 .search-btn {
   background: #0f172a;
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;  /* kotak rata */
+  padding: 0.5rem 1.2rem 0.5rem 1.2rem;  /* padding disesuaikan */
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
   letter-spacing: 0.02em;
-  transition: background 0.2s;
+  transition: background 0.2s, clip-path 0.2s;
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  
+  /* Cut-corner effect: potong sudut kanan bawah */
+  clip-path: polygon(
+    0 0,                /* kiri atas */
+    100% 0,             /* kanan atas */
+    100% calc(100% - 12px), /* kanan bawah sedikit naik */
+    calc(100% - 12px) 100%, /* bawah kanan dipotong */
+    0 100%              /* kiri bawah */
+  );
+  border-radius: 4px;   /* fallback, clip-path akan override */
 }
 
 .search-btn i {
@@ -206,14 +216,14 @@ body {
 
 /* Keterangan kecil */
 .info-note {
-  margin-top: 1rem;
+  margin-top: 0.8rem;    /* sedikit rapat ke atas */
   font-size: 0.8rem;
   color: #64748b;
   display: flex;
   align-items: center;
   gap: 0.4rem;
   background: #f8fafc;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.9rem;
   border-radius: 10px;
   width: fit-content;
 }
@@ -242,7 +252,7 @@ body {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   .store-header {
-    padding: 0.8rem 0.9rem 1rem;
+    padding: 0.8rem 0.9rem 0.8rem;
     border-radius: 0 0 16px 16px;
   }
   
@@ -267,6 +277,13 @@ body {
   }
   
   .search-btn {
-    padding: 0.6rem 0.8rem;
+    padding: 0.45rem 0.8rem;
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - 10px),
+      calc(100% - 10px) 100%,
+      0 100%
+    );
   }
 }
