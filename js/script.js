@@ -61,4 +61,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Kartu genre: klik untuk menampilkan nama genre
+  const genreCards = document.querySelectorAll('.genre-card');
+  genreCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const label = this.querySelector('.genre-label').textContent;
+      alert('Genre dipilih: ' + label);
+    });
+  });
+
 });
