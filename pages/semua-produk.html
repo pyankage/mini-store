@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Store • Semua Produk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Perhatikan path CSS karena berada di subfolder pages -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- HEADER UTAMA (diisi oleh JavaScript) -->
+  <header class="store-header" id="storeHeader"></header>
+
+  <!-- DAFTAR SEMUA PRODUK -->
+  <main class="product-list-section">
+    <h2 class="section-title">Semua Produk</h2>
+    <div class="product-grid" id="allProductGrid">
+      <!-- Bisa banyak kartu, contoh 12 kartu -->
+      <!-- Kartu 1-12 -->
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/0f172a/ffffff?text=Produk+1');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 1</div>
+          <div class="product-price">Rp 100.000</div>
+        </div>
+      </div>
+      <!-- Ulangi sebanyak yang diinginkan (misal 12) -->
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+      <div class="product-card">...</div>
+    </div>
+
+    <!-- Tombol kembali -->
+    <div class="show-all-wrapper">
+      <a href="../index.html" class="show-all-btn secondary">
+        <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+      </a>
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
