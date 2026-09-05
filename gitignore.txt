@@ -1,0 +1,23 @@
+# ============================================================
+#  .gitignore untuk Website Statis (HTML/CSS/JS)
+# ============================================================
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# File editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# File log
+*.log
+
+# Folder temporary
+tmp/
+temp/
+*.tmp
