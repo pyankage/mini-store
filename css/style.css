@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v7)
+   STYLE.CSS - Tampilan Atas Store (Final v8)
    ============================================ */
 
 * {
@@ -229,9 +229,9 @@ body {
 /* ===== MENU KATEGORI HORIZONTAL (KARTU GAMBAR) ===== */
 .category-menu {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.6rem;
   overflow-x: auto;
-  padding: 0.6rem 0.2rem 0.4rem;  /* ruang agar clip-path tidak terpotong */
+  padding: 0.6rem 0.2rem 0.4rem;
   margin-top: 0.8rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -245,8 +245,8 @@ body {
 
 /* Kartu kategori: kotak siku dengan potongan kiri atas & kanan bawah */
 .category-card {
-  flex: 0 0 38%;                 /* Lebar 38% => 2.5 kartu muat */
-  max-width: 200px;              /* Batas maksimal agar tidak terlalu besar di layar lebar */
+  flex: 0 0 calc(25% - 0.45rem);  /* 4 kartu pas, dengan gap 0.6rem */
+  max-width: 180px;
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 0;
@@ -272,15 +272,15 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
-/* Bagian atas kartu (area gambar) dengan rasio 4:3 */
+/* Bagian atas kartu (area gambar) dengan rasio 9:16 */
 .card-image {
   width: 100%;
-  aspect-ratio: 4 / 3;           /* Rasio 4:3 */
+  aspect-ratio: 9 / 16;          /* Rasio 9:16 (potret) */
   background: #f1f5f9;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #64748b;
   transition: background 0.2s;
 }
@@ -291,9 +291,9 @@ body {
 
 /* Label di bawah gambar */
 .card-label {
-  padding: 0.5rem 0.4rem;
+  padding: 0.4rem 0.3rem;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #0f172a;
   background: #ffffff;
@@ -392,21 +392,21 @@ body {
   }
 
   .category-menu {
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 
   .category-card {
-    flex: 0 0 40%;               /* sedikit lebih lebar agar tetap 2.5 kartu */
-    max-width: 150px;
+    flex: 0 0 calc(25% - 0.3rem);  /* tetap 4 kartu */
+    max-width: 120px;
     --cut: 8px;
   }
 
   .card-image {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .card-label {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.3rem;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.2rem;
   }
 }
