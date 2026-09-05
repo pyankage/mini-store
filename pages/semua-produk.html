@@ -22,18 +22,8 @@
     </button>
   </div>
 
-  <!-- FILTER (TIDAK STICKY) -->
+  <!-- FILTER (TANPA GENRE) -->
   <section class="filter-section">
-    <div class="filter-row">
-      <span class="filter-label">Genre:</span>
-      <div class="filter-buttons" id="genreFilter">
-        <button class="filter-btn active" data-genre="semua">Semua</button>
-        <button class="filter-btn" data-genre="akun">Akun</button>
-        <button class="filter-btn" data-genre="item">Item</button>
-        <button class="filter-btn" data-genre="joki">Jasa Joki</button>
-      </div>
-    </div>
-
     <div class="filter-row">
       <span class="filter-label">Urutkan:</span>
       <select id="sortSelect" class="sort-select">
@@ -48,7 +38,7 @@
       <div class="filter-buttons" id="typeFilter">
         <button class="filter-btn active" data-type="semua">Semua</button>
         <button class="filter-btn" data-type="instan">Instan</button>
-        <button class="filter-btn" data-type="otomatis">Otomatis</button>
+        <button class="filter-btn" data-type="manual">Manual</button>
       </div>
     </div>
   </section>
@@ -60,6 +50,7 @@
       <!-- Produk di-generate oleh JavaScript -->
     </div>
 
+    <!-- Pagination -->
     <div class="pagination" id="pagination">
       <button class="pagination-btn" id="prevBtn" disabled>
         <i class="fa-solid fa-arrow-left"></i> Sebelumnya
@@ -70,6 +61,7 @@
       </button>
     </div>
 
+    <!-- Tombol kembali -->
     <div class="show-all-wrapper">
       <a href="../index.html" class="show-all-btn secondary">
         <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
