@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Store App (Final v16)
+   STYLE.CSS - Store App (Final v17)
    ============================================ */
 
 * {
@@ -20,7 +20,7 @@ body {
   margin: 0;
 }
 
-/* ===== HEADER (TIDAK STICKY) ===== */
+/* ===== HEADER (HALAMAN UTAMA) ===== */
 .store-header {
   width: 100%;
   max-width: 750px;
@@ -30,6 +30,7 @@ body {
   padding: 0.9rem 1.2rem 1rem;
   margin: 0 auto;
   transition: all 0.2s ease;
+  /* Tidak sticky */
 }
 
 /* ===== BARIS ATAS ===== */
@@ -118,11 +119,11 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* ===== BAGIAN PENCARIAN (STICKY) ===== */
+/* ===== BAGIAN PENCARIAN (DEFAULT, STICKY DI HALAMAN UTAMA) ===== */
 .search-section {
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background: #f1f5f9;
   border: 2px solid #e2e8f0;
   padding: 0.2rem 0.3rem 0.2rem 0.8rem;
   transition: all 0.25s;
@@ -646,6 +647,35 @@ body {
   padding: 0.8rem 1.2rem;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* ===== STICKY HEADER KHUSUS HALAMAN KEDUA ===== */
+.sticky-header {
+  width: 100%;
+  max-width: 750px;
+  background: #ffffff;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem 0.4rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 0 0 16px 16px;
+}
+
+/* Override search-section di dalam sticky-header agar tidak double sticky */
+.sticky-header .search-section {
+  position: static;
+  background: #f1f5f9;
+  margin-bottom: 0.6rem;
+}
+
+/* Filter-section di dalam sticky-header: hilangkan margin atas, padding default */
+.sticky-header .filter-section {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: none;
 }
 
 /* ===== RESPONSIVE ===== */
