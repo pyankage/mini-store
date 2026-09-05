@@ -3,166 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Store • Tampilan Atas</title>
-  
-  <!-- Font Awesome untuk icon -->
+  <title>Store • Beranda</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <!-- Link ke CSS eksternal -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- HEADER UTAMA (STICKY) -->
-  <header class="store-header">
-    
-    <!-- BARIS ATAS: [garis3 + STORE] di kiri | MASUK di kanan -->
-    <div class="top-bar">
-      <div class="left-group">
-        <button class="menu-dots" id="menuDots" aria-label="Menu garis tiga" title="Menu utama">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="store-title">STORE</div>
-      </div>
+  <!-- HEADER UTAMA (diisi oleh JavaScript) -->
+  <header class="store-header" id="storeHeader"></header>
 
-      <button class="login-btn" id="loginBtn" title="Masuk ke akun">
-        <i class="fa-solid fa-user"></i> MASUK
-      </button>
-    </div>
-
-    <!-- BAGIAN PENCARIAN (kotak siku, potongan bawah) -->
-    <div class="search-section">
-      <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input 
-        type="text" 
-        class="search-input" 
-        id="searchInput" 
-        placeholder="Cari produk, kategori, atau brand..." 
-        aria-label="kolom pencarian"
-      >
-      <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <button class="search-btn" id="searchBtn" aria-label="tombol cari">
-        <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
-      </button>
-    </div>
-
-    <!-- MENU KATEGORI HORIZONTAL (5 KARTU BESAR) -->
-    <div class="category-menu" id="categoryMenu">
-      <div class="category-card">
-        <div class="card-image">
-          <i class="fa-solid fa-border-all"></i>
-        </div>
-        <div class="card-label">Semua</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image">
-          <i class="fa-solid fa-laptop"></i>
-        </div>
-        <div class="card-label">Elektronik</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image">
-          <i class="fa-solid fa-shirt"></i>
-        </div>
-        <div class="card-label">Fashion</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image">
-          <i class="fa-solid fa-utensils"></i>
-        </div>
-        <div class="card-label">Makanan</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image">
-          <i class="fa-solid fa-gamepad"></i>
-        </div>
-        <div class="card-label">Game</div>
-      </div>
-    </div>
-
-    <!-- MENU GENRE (3 KOTAK KECIL RASIO 1:1) -->
-    <div class="genre-menu" id="genreMenu">
-      <div class="genre-card">
-        <div class="genre-icon">
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <div class="genre-label">AKUN</div>
-      </div>
-      <div class="genre-card">
-        <div class="genre-icon">
-          <i class="fa-solid fa-box"></i>
-        </div>
-        <div class="genre-label">ITEM</div>
-      </div>
-      <div class="genre-card">
-        <div class="genre-icon">
-          <i class="fa-solid fa-headset"></i>
-        </div>
-        <div class="genre-label">JASA JOKI</div>
-      </div>
-    </div>
-
-    <!-- KETERANGAN SINGKAT -->
-    <div class="info-note">
-      <i class="fa-solid fa-circle-info"></i> 
-      <span>Kategori & genre bisa digeser / dipilih</span>
-    </div>
-  </header>
-
-  <!-- ===== SECTION DAFTAR JUALAN (di luar header sticky) ===== -->
+  <!-- DAFTAR JUALAN (8 produk) -->
   <main class="product-list-section">
     <h2 class="section-title">Daftar Jualan</h2>
-    
     <div class="product-grid" id="productGrid">
-      <!-- Contoh kartu produk 1 -->
+      <!-- 8 kartu produk (hardcode) -->
       <div class="product-card">
-        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/0f172a/ffffff?text=Produk+1');">
-          <!-- placeholder image, nanti bisa diganti dengan upload -->
-        </div>
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/0f172a/ffffff?text=Produk+1');"></div>
         <div class="product-info">
           <div class="product-name">Nama Produk 1</div>
           <div class="product-price">Rp 100.000</div>
         </div>
       </div>
-      <!-- Contoh kartu produk 2 -->
       <div class="product-card">
-        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/1e293b/ffffff?text=Produk+2');"></div>
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/1e293b/ffffff?text=Produk+2');"></div>
         <div class="product-info">
           <div class="product-name">Nama Produk 2</div>
           <div class="product-price">Rp 150.000</div>
         </div>
       </div>
-      <!-- Contoh kartu produk 3 (bisa ditambah) -->
       <div class="product-card">
-        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/334155/ffffff?text=Produk+3');"></div>
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/334155/ffffff?text=Produk+3');"></div>
         <div class="product-info">
           <div class="product-name">Nama Produk 3</div>
           <div class="product-price">Rp 200.000</div>
         </div>
       </div>
-      <!-- Contoh kartu produk 4 -->
       <div class="product-card">
-        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/475569/ffffff?text=Produk+4');"></div>
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/475569/ffffff?text=Produk+4');"></div>
         <div class="product-info">
           <div class="product-name">Nama Produk 4</div>
           <div class="product-price">Rp 250.000</div>
         </div>
       </div>
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/0f172a/ffffff?text=Produk+5');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 5</div>
+          <div class="product-price">Rp 300.000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/1e293b/ffffff?text=Produk+6');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 6</div>
+          <div class="product-price">Rp 350.000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/334155/ffffff?text=Produk+7');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 7</div>
+          <div class="product-price">Rp 400.000</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x225/475569/ffffff?text=Produk+8');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 8</div>
+          <div class="product-price">Rp 450.000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tombol menuju semua produk -->
+    <div class="show-all-wrapper">
+      <a href="pages/semua-produk.html" class="show-all-btn">
+        Tampilkan Semuanya <i class="fa-solid fa-arrow-right"></i>
+      </a>
     </div>
   </main>
 
-  <!-- PENJELASAN TAMBAHAN -->
-  <div class="explanation">
-    <p>
-      🧩 <strong>Penjelasan:</strong> 
-      Header sticky berisi menu, pencarian, kategori, dan genre. 
-      Di bawahnya ada <strong>daftar jualan</strong> dengan grid 2 kolom dan rasio kartu 16:6. 
-      Kamu bisa mengganti placeholder gambar dengan produk asli saat upload nanti.
-    </p>
-  </div>
-
-  <!-- Link ke JavaScript eksternal -->
   <script src="js/script.js"></script>
 </body>
 </html>
