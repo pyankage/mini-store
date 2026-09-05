@@ -15,15 +15,17 @@
   <!-- HEADER UTAMA -->
   <header class="store-header">
     
-    <!-- BARIS ATAS: titik3 | STORE | MASUK -->
+    <!-- BARIS ATAS: [garis3 + STORE] di kiri | MASUK di kanan -->
     <div class="top-bar">
-      <!-- Titik 3 (kiri atas) -->
-      <button class="menu-dots" id="menuDots" aria-label="Menu titik tiga" title="Menu utama">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-      </button>
-
-      <!-- STORE di tengah -->
-      <div class="store-title">STORE</div>
+      <!-- Grup kiri: ikon menu + judul STORE -->
+      <div class="left-group">
+        <!-- Ikon garis tiga (hamburger) -->
+        <button class="menu-dots" id="menuDots" aria-label="Menu garis tiga" title="Menu utama">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <!-- Teks STORE di samping ikon -->
+        <div class="store-title">STORE</div>
+      </div>
 
       <!-- Tombol MASUK di kanan atas -->
       <button class="login-btn" id="loginBtn" title="Masuk ke akun">
@@ -31,7 +33,7 @@
       </button>
     </div>
 
-    <!-- BAGIAN PENCARIAN -->
+    <!-- BAGIAN PENCARIAN (kotak rata) -->
     <div class="search-section">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
       <input 
@@ -49,10 +51,10 @@
       </button>
     </div>
 
-    <!-- KETERANGAN SINGKAT -->
+    <!-- KETERANGAN SINGKAT (sesuai permintaan) -->
     <div class="info-note">
       <i class="fa-solid fa-circle-info"></i> 
-      <span>Atas: <strong>⋮</strong> kiri • <strong>STORE</strong> tengah • <strong>MASUK</strong> kanan | bawahnya kolom <strong>pencarian</strong></span>
+      <span>Kiri: <strong>☰ + STORE</strong> • Kanan: <strong>MASUK</strong> • Bawah: <strong>pencarian kotak</strong></span>
     </div>
   </header>
 
@@ -60,10 +62,10 @@
   <div class="explanation">
     <p>
       🧩 <strong>Penjelasan tampilan atas:</strong> 
-      Titik tiga (<i class="fa-solid fa-ellipsis-vertical"></i>) di pojok kiri atas berfungsi sebagai menu navigasi. 
-      Teks <strong>STORE</strong> berada tepat di tengah sebagai identitas utama. 
-      Tombol <strong>MASUK</strong> di pojok kanan atas untuk akses akun. 
-      Di bawahnya terdapat <strong>kolom pencarian</strong> lengkap dengan ikon, tombol bersih, dan tombol "Cari".
+      Ikon garis tiga (<i class="fa-solid fa-bars"></i>) di pojok kiri atas sebagai menu navigasi, 
+      tepat di sampingnya ada teks <strong>STORE</strong>. 
+      Tombol <strong>MASUK</strong> berada di pojok kanan atas. 
+      Di bawahnya ada <strong>kolom pencarian</strong> dengan desain kotak rata.
     </p>
   </div>
 
