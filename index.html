@@ -14,16 +14,20 @@
 
   <!-- ===== HEADER UTAMA ===== -->
   <header class="store-header">
-    <!-- Baris atas -->
+    <!-- Baris atas: sekarang ada navigasi kategori pengganti titik 3 -->
     <div class="top-bar">
       <div class="left-group">
-        <button class="menu-dots" id="menuDots" aria-label="Menu garis tiga" title="Menu utama">
-          <i class="fa-solid fa-bars"></i>
-        </button>
+        <!-- Navigasi kategori: Akun, Item, Jasa Joki -->
+        <nav class="category-nav" id="categoryNav">
+          <button class="nav-cat-btn active" data-genre="semua">Semua</button>
+          <button class="nav-cat-btn" data-genre="akun">Akun</button>
+          <button class="nav-cat-btn" data-genre="item">Item</button>
+          <button class="nav-cat-btn" data-genre="joki">Jasa Joki</button>
+        </nav>
         <div class="store-title">STORE</div>
       </div>
 
-      <!-- Tombol MASUK diubah menjadi tautan ke halaman login admin -->
+      <!-- Tombol MASUK -->
       <a href="pages/admin/login.html" class="login-btn" title="Masuk ke akun">
         <i class="fa-solid fa-user"></i> MASUK
       </a>
@@ -41,41 +45,17 @@
       </button>
     </div>
 
-    <!-- Kategori (scroll horizontal) -->
-    <div class="category-menu" id="categoryMenu">
-      <div class="category-card">
-        <div class="card-image"><i class="fa-solid fa-border-all"></i></div>
-        <div class="card-label">Semua</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image"><i class="fa-solid fa-laptop"></i></div>
-        <div class="card-label">Elektronik</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image"><i class="fa-solid fa-shirt"></i></div>
-        <div class="card-label">Fashion</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image"><i class="fa-solid fa-utensils"></i></div>
-        <div class="card-label">Makanan</div>
-      </div>
-      <div class="category-card">
-        <div class="card-image"><i class="fa-solid fa-gamepad"></i></div>
-        <div class="card-label">Game</div>
-      </div>
-    </div>
-
-    <!-- Genre (3 kotak) -->
+    <!-- Genre (3 kotak) – tetap di bawah pencarian dan berfungsi -->
     <div class="genre-menu" id="genreMenu">
-      <div class="genre-card">
+      <div class="genre-card" data-genre="akun">
         <div class="genre-icon"><i class="fa-solid fa-user"></i></div>
         <div class="genre-label">AKUN</div>
       </div>
-      <div class="genre-card">
+      <div class="genre-card" data-genre="item">
         <div class="genre-icon"><i class="fa-solid fa-box"></i></div>
         <div class="genre-label">ITEM</div>
       </div>
-      <div class="genre-card">
+      <div class="genre-card" data-genre="joki">
         <div class="genre-icon"><i class="fa-solid fa-headset"></i></div>
         <div class="genre-label">JASA JOKI</div>
       </div>
@@ -84,14 +64,13 @@
     <!-- Keterangan -->
     <div class="info-note">
       <i class="fa-solid fa-circle-info"></i> 
-      <span>Kategori & genre bisa digeser / dipilih</span>
+      <span>Gunakan kategori untuk memfilter produk</span>
     </div>
   </header>
 
   <!-- ===== DAFTAR JUALAN (28 PRODUK) ===== -->
   <main class="product-list-section">
     <h2 class="section-title">Daftar Jualan</h2>
-
     <div class="product-grid" id="productGrid">
       <!-- Produk akan di-generate oleh JavaScript -->
     </div>
@@ -104,7 +83,6 @@
     </div>
   </main>
 
-  <!-- JavaScript eksternal -->
   <script src="js/script.js"></script>
 </body>
 </html>
