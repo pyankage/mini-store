@@ -81,19 +81,13 @@
       </div>
     </div>
 
-    <!-- MENU GENRE (4 KOTAK KECIL RASIO 1:1) -->
+    <!-- MENU GENRE (3 KOTAK KECIL RASIO 1:1) -->
     <div class="genre-menu" id="genreMenu">
       <div class="genre-card">
         <div class="genre-icon">
           <i class="fa-solid fa-user"></i>
         </div>
         <div class="genre-label">AKUN</div>
-      </div>
-      <div class="genre-card">
-        <div class="genre-icon">
-          <i class="fa-solid fa-wallet"></i>
-        </div>
-        <div class="genre-label">TOP UP</div>
       </div>
       <div class="genre-card">
         <div class="genre-icon">
@@ -116,14 +110,55 @@
     </div>
   </header>
 
+  <!-- ===== SECTION DAFTAR JUALAN (di luar header sticky) ===== -->
+  <main class="product-list-section">
+    <h2 class="section-title">Daftar Jualan</h2>
+    
+    <div class="product-grid" id="productGrid">
+      <!-- Contoh kartu produk 1 -->
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/0f172a/ffffff?text=Produk+1');">
+          <!-- placeholder image, nanti bisa diganti dengan upload -->
+        </div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 1</div>
+          <div class="product-price">Rp 100.000</div>
+        </div>
+      </div>
+      <!-- Contoh kartu produk 2 -->
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/1e293b/ffffff?text=Produk+2');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 2</div>
+          <div class="product-price">Rp 150.000</div>
+        </div>
+      </div>
+      <!-- Contoh kartu produk 3 (bisa ditambah) -->
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/334155/ffffff?text=Produk+3');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 3</div>
+          <div class="product-price">Rp 200.000</div>
+        </div>
+      </div>
+      <!-- Contoh kartu produk 4 -->
+      <div class="product-card">
+        <div class="product-image" style="background-image: url('https://via.placeholder.com/400x150/475569/ffffff?text=Produk+4');"></div>
+        <div class="product-info">
+          <div class="product-name">Nama Produk 4</div>
+          <div class="product-price">Rp 250.000</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <!-- PENJELASAN TAMBAHAN -->
   <div class="explanation">
     <p>
       🧩 <strong>Penjelasan:</strong> 
-      Ikon garis tiga (<i class="fa-solid fa-bars"></i>) di pojok kiri atas, teks <strong>STORE</strong> di sampingnya, 
-      tombol <strong>MASUK</strong> di kanan. Di bawahnya terdapat kolom pencarian dengan potongan bawah, 
-      lalu deretan kartu kategori besar (5 kartu, rasio 9:16), dan di bawahnya ada 4 kotak kecil genre (AKUN, TOP UP, ITEM, JASA JOKI). 
-      Seluruh header tetap menempel saat scroll.
+      Header sticky berisi menu, pencarian, kategori, dan genre. 
+      Di bawahnya ada <strong>daftar jualan</strong> dengan grid 2 kolom dan rasio kartu 16:6. 
+      Kamu bisa mengganti placeholder gambar dengan produk asli saat upload nanti.
     </p>
   </div>
 
