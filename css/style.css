@@ -1,5 +1,5 @@
 /* ============================================
-   STYLE.CSS - Tampilan Atas Store (Final v10)
+   STYLE.CSS - Tampilan Atas Store (Final v12)
    ============================================ */
 
 * {
@@ -298,13 +298,13 @@ body {
   text-overflow: ellipsis;
 }
 
-/* ===== MENU GENRE (4 KOTAK KECIL RASIO 1:1) ===== */
+/* ===== MENU GENRE (3 KOTAK KECIL RASIO 1:1) ===== */
 .genre-menu {
   display: flex;
   gap: 0.6rem;
   margin-top: 0.8rem;
   padding: 0 0.2rem;
-  overflow-x: auto;             /* jika layar sempit bisa digeser */
+  overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
@@ -315,16 +315,15 @@ body {
 }
 
 .genre-card {
-  flex: 0 0 calc(25% - 0.45rem);  /* 4 kartu pas */
-  max-width: 100px;                /* batas di layar lebar */
-  aspect-ratio: 1 / 1;            /* rasio 1:1 */
+  flex: 0 0 calc(33.333% - 0.4rem);
+  max-width: 110px;
+  aspect-ratio: 1 / 1;
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 0;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   
-  /* potongan chamfer kecil */
   --cut: 6px;
   clip-path: polygon(
     var(--cut) 0,
@@ -365,7 +364,7 @@ body {
   max-width: 90%;
 }
 
-/* Keterangan kecil */
+/* ===== KETERANGAN & INFO ===== */
 .info-note {
   margin-top: 0.8rem;
   font-size: 0.8rem;
@@ -381,6 +380,76 @@ body {
 
 .info-note i {
   font-size: 0.9rem;
+}
+
+/* ===== SECTION DAFTAR JUALAN ===== */
+.product-list-section {
+  width: 100%;
+  max-width: 750px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.2rem 2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* Area gambar produk dengan rasio 16:6 */
+.product-image {
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  background-size: cover;
+  background-position: center;
+  background-color: #f1f5f9;
+}
+
+/* Info produk */
+.product-info {
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.product-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-price {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
 }
 
 /* Penjelasan tambahan */
@@ -477,7 +546,7 @@ body {
   }
 
   .genre-card {
-    flex: 0 0 calc(25% - 0.3rem);
+    flex: 0 0 calc(33.333% - 0.267rem);
     max-width: 80px;
     --cut: 5px;
   }
@@ -488,5 +557,22 @@ body {
 
   .genre-label {
     font-size: 0.6rem;
+  }
+
+  .product-list-section {
+    padding: 0 0.9rem 1.5rem;
+  }
+
+  .product-grid {
+    gap: 0.6rem;
+  }
+
+  .product-info {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .product-name,
+  .product-price {
+    font-size: 0.75rem;
   }
 }
