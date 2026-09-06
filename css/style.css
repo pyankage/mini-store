@@ -1,450 +1,186 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+let allProducts = [];
+let currentGenre = 'semua';
+let currentSub = null;
+let currentSort = 'rekomendasi';
+let currentType = 'semua';
+let currentPage = 1;
+const itemsPerPage = 28;
 
-body {
-  background: #f0f2f5;
-  font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-/* ===== HEADER ===== */
-.store-header {
-  width: 100%;
-  max-width: 1200px;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 0.8rem 1.5rem 0;
-}
-
-.header-top {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding-bottom: 0.8rem;
-}
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #1a1a2e;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-}
-
-.logo-highlight {
-  color: #ff6b00;
-}
-
-.search-section {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  background: #f5f6fa;
-  border: 2px solid #e4e7ec;
-  border-radius: 50px;
-  padding: 0.3rem 0.5rem;
-  transition: all 0.3s;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.search-section:focus-within {
-  border-color: #ff6b00;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(255,107,0,0.1);
-}
-
-.search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 0.6rem 0.8rem;
-  font-size: 0.95rem;
-  color: #1a1a2e;
-}
-
-.search-btn {
-  background: #ff6b00;
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-
-.search-btn:hover {
-  background: #e65c00;
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 0.5rem;
-  white-space: nowrap;
-}
-
-.btn-login,
-.btn-register {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.btn-login {
-  background: #1a1a2e;
-  color: white;
-}
-
-.btn-login:hover {
-  background: #2d2d44;
-}
-
-.btn-register {
-  background: #ff6b00;
-  color: white;
-}
-
-.btn-register:hover {
-  background: #e65c00;
-}
-
-/* ===== NAVIGASI KATEGORI ===== */
-.main-nav {
-  display: flex;
-  gap: 1.5rem;
-  border-top: 1px solid #e4e7ec;
-  padding: 0.6rem 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.main-nav::-webkit-scrollbar {
-  display: none;
-}
-
-.nav-link {
-  background: none;
-  border: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #555;
-  cursor: pointer;
-  padding: 0.5rem 0;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.nav-link:hover {
-  color: #1a1a2e;
-}
-
-.nav-link.active {
-  color: #ff6b00;
-  border-bottom-color: #ff6b00;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: white;
-  min-width: 160px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  z-index: 200;
-  padding: 0.5rem 0;
-  top: 100%;
-  left: 0;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown-content a {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: #333;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: background 0.2s;
-}
-
-.dropdown-content a:hover {
-  background: #f5f6fa;
-  color: #ff6b00;
-}
-
-/* ===== BANNER ===== */
-.banner-section {
-  width: 100%;
-  max-width: 1200px;
-  padding: 1.5rem 1.5rem 0;
-}
-
-.banner-content {
-  background: linear-gradient(135deg, #1a1a2e, #2d2d44);
-  color: white;
-  border-radius: 16px;
-  padding: 3rem 2rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.banner-content h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.banner-content p {
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
-}
-
-.btn-banner {
-  background: #ff6b00;
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-banner:hover {
-  background: #e65c00;
-}
-
-/* ===== FILTER SECTION ===== */
-.filter-section {
-  width: 100%;
-  max-width: 1200px;
-  padding: 1rem 1.5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-.filter-left,
-.filter-right {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.filter-label {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.sort-select {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: white;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.filter-buttons {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.filter-btn {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.filter-btn.active {
-  background: #ff6b00;
-  color: white;
-  border-color: #ff6b00;
-}
-
-/* ===== PRODUCT LIST ===== */
-.product-list-section {
-  width: 100%;
-  max-width: 1200px;
-  padding: 1.5rem;
-}
-
-.section-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 1rem;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.product-card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.product-image {
-  width: 100%;
-  aspect-ratio: 16/9;
-  background-size: cover;
-  background-position: center;
-  background-color: #eee;
-}
-
-.product-info {
-  padding: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.product-name {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #1a1a2e;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.product-price {
-  font-weight: 700;
-  color: #ff6b00;
-  font-size: 1.1rem;
-}
-
-.product-meta {
-  display: flex;
-  gap: 0.3rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-
-.badge-genre { background: #eef2f7; color: #333; }
-.badge-type { background: #e8f0fe; color: #1a73e8; }
-.badge-sub { background: #fff3e0; color: #e65100; }
-.badge-rating { background: #fef9e7; color: #f9a825; }
-
-.btn-buy {
-  background: #ff6b00;
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  transition: background 0.2s;
-}
-
-.btn-buy:hover {
-  background: #e65c00;
-}
-
-/* ===== SHOW ALL ===== */
-.show-all-wrapper {
-  text-align: center;
-  margin-top: 1.5rem;
-}
-
-.show-all-btn {
-  display: inline-block;
-  background: #1a1a2e;
-  color: white;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-}
-
-.show-all-btn:hover {
-  background: #2d2d44;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .header-top {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+// Data dummy
+function createDummyProducts(count) {
+  const genres = ['akun', 'item', 'joki'];
+  const subMap = {
+    akun: ['mobile-legends', 'free-fire', 'pubg', 'genshin'],
+    item: ['skin', 'senjata', 'item-rare'],
+    joki: ['rank-push', 'leveling', 'mabar']
+  };
+  const types = ['instan', 'manual'];
+  const products = [];
+  for (let i = 1; i <= count; i++) {
+    const genre = genres[Math.floor(Math.random() * genres.length)];
+    const subs = subMap[genre];
+    const sub = subs[Math.floor(Math.random() * subs.length)];
+    const type = types[Math.floor(Math.random() * types.length)];
+    const price = Math.floor(Math.random() * 1000000) + 50000;
+    const rating = (Math.random() * 2 + 3).toFixed(1);
+    products.push({
+      id: i,
+      name: `Produk ${i} (${sub})`,
+      price,
+      genre,
+      sub,
+      type,
+      rating,
+      image: `https://via.placeholder.com/400x225/hsl(${i * 15},40%,30%)/ffffff?text=Produk+${i}`
+    });
   }
-  .logo {
-    font-size: 1.4rem;
+  return products;
+}
+
+function renderProducts(products, gridId) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = '';
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-image" style="background-image: url('${product.image}');"></div>
+      <div class="product-info">
+        <div class="product-name">${product.name}</div>
+        <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
+        <div class="product-meta">
+          <span class="badge badge-genre">${product.genre.toUpperCase()}</span>
+          <span class="badge badge-type">${product.type.toUpperCase()}</span>
+          <span class="badge badge-sub">${product.sub.toUpperCase()}</span>
+          <span class="badge badge-rating"><i class="fa-solid fa-star"></i> ${product.rating}</span>
+        </div>
+        <button class="btn-buy">Beli Sekarang</button>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      alert(`Produk dipilih:\n${product.name}\nHarga: Rp ${product.price.toLocaleString('id-ID')}\nRating: ${product.rating}\nGenre: ${product.genre}\nSub: ${product.sub}\nTipe: ${product.type}`);
+    });
+    grid.appendChild(card);
+  });
+}
+
+function applyFilterAndSort() {
+  let filtered = allProducts;
+  if (currentGenre !== 'semua') filtered = filtered.filter(p => p.genre === currentGenre);
+  if (currentSub) filtered = filtered.filter(p => p.sub === currentSub);
+  if (currentType !== 'semua') filtered = filtered.filter(p => p.type === currentType);
+
+  switch (currentSort) {
+    case 'termurah': filtered.sort((a,b) => a.price - b.price); break;
+    case 'termahal': filtered.sort((a,b) => b.price - a.price); break;
+    default: filtered.sort((a,b) => b.rating - a.rating);
   }
-  .search-section {
-    order: 3;
-    flex-basis: 100%;
-    max-width: none;
+  return filtered;
+}
+
+function renderHomePage() {
+  const filtered = applyFilterAndSort();
+  renderProducts(filtered, 'productGrid');
+}
+
+function renderProductPage() {
+  const filtered = applyFilterAndSort();
+  const totalItems = filtered.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
+  if (currentPage > totalPages) currentPage = totalPages;
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  renderProducts(filtered.slice(start, end), 'productGrid');
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageInfo = document.getElementById('pageInfo');
+  const prevPageNum = document.getElementById('prevPageNum');
+  const nextPageNum = document.getElementById('nextPageNum');
+  if (prevBtn) prevBtn.disabled = currentPage === 1;
+  if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+  if (pageInfo) pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+  if (prevPageNum) prevPageNum.textContent = Math.max(1, currentPage - 1);
+  if (nextPageNum) nextPageNum.textContent = Math.min(totalPages, currentPage + 1);
+}
+
+function bindEvents() {
+  // Pencarian
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchInput');
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', () => {
+      const q = searchInput.value.trim();
+      if (q) alert('🔍 Mencari: ' + q); else alert('Ketik kata kunci dulu');
+    });
+    searchInput.addEventListener('keypress', e => { if(e.key==='Enter') searchBtn.click(); });
   }
-  .auth-buttons {
-    margin-left: auto;
+
+  // Navigasi kategori
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      currentGenre = link.dataset.genre;
+      currentSub = null;
+      if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
+    });
+  });
+
+  // Dropdown subkategori
+  document.querySelectorAll('.dropdown-content a').forEach(sub => {
+    sub.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parentDropdown = sub.closest('.dropdown');
+      const navLink = parentDropdown.querySelector('.nav-link');
+      currentGenre = navLink.dataset.genre;
+      currentSub = sub.dataset.sub;
+      if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
+    });
+  });
+
+  // Sort
+  const sortSelect = document.getElementById('sortSelect');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      currentSort = sortSelect.value;
+      if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
+    });
   }
-  .main-nav {
-    gap: 1rem;
+
+  // Filter tipe
+  const typeFilter = document.getElementById('typeFilter');
+  if (typeFilter) {
+    typeFilter.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeFilter.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentType = btn.dataset.type;
+        if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
+      });
+    });
   }
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+
+  // Pagination (halaman kedua)
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) { currentPage--; renderProductPage(); window.scrollTo({top:0,behavior:'smooth'}); }
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(applyFilterAndSort().length / itemsPerPage);
+      if (currentPage < totalPages) { currentPage++; renderProductPage(); window.scrollTo({top:0,behavior:'smooth'}); }
+    });
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const isProductPage = document.getElementById('pagination') !== null;
+  allProducts = createDummyProducts(isProductPage ? 50 : 28);
+  if (isProductPage) { currentPage=1; renderProductPage(); } else renderHomePage();
+  bindEvents();
+});
