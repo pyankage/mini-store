@@ -10,44 +10,50 @@
 </head>
 <body>
 
-  <!-- ===== HEADER STICKY (hanya baris atas + pencarian) ===== -->
+  <!-- ===== HEADER STICKY DUA BARIS ===== -->
   <header class="store-header">
-    <div class="top-bar">
-      <div class="left-group">
-        <button class="menu-dots" id="menuDots" aria-label="Menu" title="Menu">
-          <i class="fa-solid fa-bars"></i>
+    <!-- Baris pertama: logo, pencarian, login -->
+    <div class="header-top">
+      <div class="logo">
+        <i class="fa-solid fa-gamepad"></i>
+        <span>STORE</span>
+      </div>
+      <div class="search-section">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" class="search-input" id="searchInput" placeholder="Cari game, akun, item, joki..." aria-label="kolom pencarian">
+        <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
+          <i class="fa-solid fa-xmark"></i>
         </button>
-        <div class="store-title">STORE</div>
+        <button class="search-btn" id="searchBtn" aria-label="tombol cari">
+          <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
+        </button>
       </div>
       <a href="pages/admin/login.html" class="login-btn" title="Masuk ke akun">
-        <i class="fa-solid fa-user"></i> MASUK
+        <i class="fa-solid fa-user"></i> <span>MASUK</span>
       </a>
     </div>
 
-    <div class="search-section">
-      <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input type="text" class="search-input" id="searchInput" placeholder="Cari produk, kategori, atau brand..." aria-label="kolom pencarian">
-      <button class="search-clear" id="clearBtn" aria-label="hapus pencarian" title="Bersihkan">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <button class="search-btn" id="searchBtn" aria-label="tombol cari">
-        <i class="fa-solid fa-arrow-right"></i> <span>Cari</span>
-      </button>
-    </div>
+    <!-- Baris kedua: navigasi kategori -->
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-link active" data-genre="semua">Semua</button>
+      <button class="nav-link" data-genre="akun">Akun</button>
+      <button class="nav-link" data-genre="item">Item</button>
+      <button class="nav-link" data-genre="joki">Jasa Joki</button>
+    </nav>
   </header>
 
-  <!-- ===== DRAWER ===== -->
+  <!-- ===== DRAWER (MENU SAMPING untuk subkategori) ===== -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <div class="drawer" id="drawer">
     <div class="drawer-header">
       <span>Kategori</span>
-      <button class="drawer-close" id="drawerClose" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+      <button class="drawer-close" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="drawer-search">
       <i class="fa-solid fa-search"></i>
       <input type="text" id="drawerSearchInput" placeholder="Cari kategori...">
     </div>
-    <div class="drawer-content" id="drawerContent">
+    <div class="drawer-content">
       <button class="drawer-cat-btn" data-genre="semua">Semua</button>
 
       <div class="drawer-category-group" data-genre="akun">
@@ -89,26 +95,16 @@
     </div>
   </div>
 
-  <!-- ===== GENRE & FILTER (di luar header, ikut scroll) ===== -->
-  <div class="genre-menu" id="genreMenu">
-    <div class="genre-card active" data-genre="semua">
-      <div class="genre-icon"><i class="fa-solid fa-border-all"></i></div>
-      <div class="genre-label">SEMUA</div>
-    </div>
-    <div class="genre-card" data-genre="akun">
-      <div class="genre-icon"><i class="fa-solid fa-user"></i></div>
-      <div class="genre-label">AKUN</div>
-    </div>
-    <div class="genre-card" data-genre="item">
-      <div class="genre-icon"><i class="fa-solid fa-box"></i></div>
-      <div class="genre-label">ITEM</div>
-    </div>
-    <div class="genre-card" data-genre="joki">
-      <div class="genre-icon"><i class="fa-solid fa-headset"></i></div>
-      <div class="genre-label">JASA JOKI</div>
+  <!-- ===== BANNER SEDERHANA ===== -->
+  <div class="banner-section">
+    <div class="banner-placeholder">
+      <i class="fa-solid fa-bolt"></i>
+      <h1>Top Up & Jasa Game Terpercaya</h1>
+      <p>Cari akun, item, atau joki favoritmu dengan harga terbaik</p>
     </div>
   </div>
 
+  <!-- ===== FILTER & SORTING ===== -->
   <section class="filter-section">
     <div class="filter-row">
       <span class="filter-label">Urutkan:</span>
@@ -128,14 +124,9 @@
     </div>
   </section>
 
-  <div class="info-note">
-    <i class="fa-solid fa-circle-info"></i> 
-    <span>Pilih kategori untuk memfilter produk</span>
-  </div>
-
-  <!-- ===== DAFTAR JUALAN ===== -->
+  <!-- ===== DAFTAR PRODUK ===== -->
   <main class="product-list-section">
-    <h2 class="section-title">Daftar Jualan</h2>
+    <h2 class="section-title">Produk Terpopuler</h2>
     <div class="product-grid" id="productGrid"></div>
 
     <div class="show-all-wrapper">
