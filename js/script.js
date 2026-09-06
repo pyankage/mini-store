@@ -1,7 +1,3 @@
-// ============================================
-// SCRIPT.JS - Eldorado-style Store
-// ============================================
-
 let allProducts = [];
 let currentGenre = 'semua';
 let currentSub = null;
@@ -10,6 +6,7 @@ let currentType = 'semua';
 let currentPage = 1;
 const itemsPerPage = 28;
 
+// Data dummy
 function createDummyProducts(count) {
   const genres = ['akun', 'item', 'joki'];
   const subMap = {
@@ -25,7 +22,7 @@ function createDummyProducts(count) {
     const sub = subs[Math.floor(Math.random() * subs.length)];
     const type = types[Math.floor(Math.random() * types.length)];
     const price = Math.floor(Math.random() * 1000000) + 50000;
-    const rating = (Math.random() * 2 + 3).toFixed(1); // rating 3.0 - 5.0
+    const rating = (Math.random() * 2 + 3).toFixed(1);
     products.push({
       id: i,
       name: `Produk ${i} (${sub})`,
@@ -58,6 +55,7 @@ function renderProducts(products, gridId) {
           <span class="badge badge-sub">${product.sub.toUpperCase()}</span>
           <span class="badge badge-rating"><i class="fa-solid fa-star"></i> ${product.rating}</span>
         </div>
+        <button class="btn-buy">Beli Sekarang</button>
       </div>
     `;
     card.addEventListener('click', () => {
@@ -76,7 +74,7 @@ function applyFilterAndSort() {
   switch (currentSort) {
     case 'termurah': filtered.sort((a,b) => a.price - b.price); break;
     case 'termahal': filtered.sort((a,b) => b.price - a.price); break;
-    default: filtered.sort((a,b) => b.rating - a.rating); break; // rekomendasi berdasarkan rating
+    default: filtered.sort((a,b) => b.rating - a.rating);
   }
   return filtered;
 }
@@ -107,16 +105,6 @@ function renderProductPage() {
   if (nextPageNum) nextPageNum.textContent = Math.min(totalPages, currentPage + 1);
 }
 
-function openDrawer() {
-  document.getElementById('drawer').classList.add('active');
-  document.getElementById('drawerOverlay').classList.add('active');
-}
-
-function closeDrawer() {
-  document.getElementById('drawer').classList.remove('active');
-  document.getElementById('drawerOverlay').classList.remove('active');
-}
-
 function bindEvents() {
   // Pencarian
   const searchBtn = document.getElementById('searchBtn');
@@ -129,76 +117,26 @@ function bindEvents() {
     searchInput.addEventListener('keypress', e => { if(e.key==='Enter') searchBtn.click(); });
   }
 
-  // Drawer
-  const menuDots = document.getElementById('menuDots');
-  if (menuDots) menuDots.addEventListener('click', openDrawer);
-  document.getElementById('drawerClose')?.addEventListener('click', closeDrawer);
-  document.getElementById('drawerOverlay')?.addEventListener('click', closeDrawer);
-
-  // Drawer search
-  const drawerSearch = document.getElementById('drawerSearchInput');
-  if (drawerSearch) {
-    drawerSearch.addEventListener('input', e => {
-      const q = e.target.value.toLowerCase();
-      document.querySelectorAll('.drawer-cat-btn, .drawer-sub-btn').forEach(btn => {
-        btn.style.display = btn.textContent.toLowerCase().includes(q) ? '' : 'none';
-      });
-      document.querySelectorAll('.drawer-category-group').forEach(group => {
-        const visible = group.querySelectorAll('.drawer-cat-btn[style=""]').length > 0 ||
-                        group.querySelectorAll('.drawer-sub-btn[style=""]').length > 0;
-        group.style.display = visible ? '' : 'none';
-      });
-    });
-  }
-
-  // Kategori di drawer
-  document.querySelectorAll('.drawer-cat-btn.main').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentGenre = btn.dataset.genre;
-      currentSub = null;
-      if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
-      closeDrawer();
-    });
-  });
-
-  document.querySelector('.drawer-cat-btn[data-genre="semua"]')?.addEventListener('click', () => {
-    currentGenre = 'semua'; currentSub = null;
-    if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
-    closeDrawer();
-  });
-
-  // Toggle submenu
-  document.querySelectorAll('.drawer-toggle').forEach(toggle => {
-    toggle.addEventListener('click', e => {
-      e.stopPropagation();
-      const target = document.getElementById(toggle.dataset.target);
-      if (target) {
-        const hidden = target.style.display === 'none' || target.style.display === '';
-        target.style.display = hidden ? 'block' : 'none';
-        toggle.classList.toggle('open', hidden);
-      }
-    });
-  });
-
-  // Subkategori
-  document.querySelectorAll('.drawer-sub-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const group = btn.closest('.drawer-category-group');
-      currentGenre = group.dataset.genre;
-      currentSub = btn.dataset.sub;
-      if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
-      closeDrawer();
-    });
-  });
-
-  // Nav link
+  // Navigasi kategori
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
       link.classList.add('active');
       currentGenre = link.dataset.genre;
       currentSub = null;
-      renderHomePage();
+      if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
+    });
+  });
+
+  // Dropdown subkategori
+  document.querySelectorAll('.dropdown-content a').forEach(sub => {
+    sub.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parentDropdown = sub.closest('.dropdown');
+      const navLink = parentDropdown.querySelector('.nav-link');
+      currentGenre = navLink.dataset.genre;
+      currentSub = sub.dataset.sub;
+      if (document.getElementById('pagination')) { currentPage=1; renderProductPage(); } else renderHomePage();
     });
   });
 
@@ -224,7 +162,7 @@ function bindEvents() {
     });
   }
 
-  // Pagination
+  // Pagination (halaman kedua)
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   if (prevBtn) {
