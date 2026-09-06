@@ -1,3 +1,7 @@
+// ============================================
+// SCRIPT.JS - Eldorado-style Store (halaman utama 8 produk)
+// ============================================
+
 let allProducts = [];
 let currentGenre = 'semua';
 let currentSub = null;
@@ -81,7 +85,9 @@ function applyFilterAndSort() {
 
 function renderHomePage() {
   const filtered = applyFilterAndSort();
-  renderProducts(filtered, 'productGrid');
+  // Hanya tampilkan 8 produk di halaman utama
+  const productsToShow = filtered.slice(0, 8);
+  renderProducts(productsToShow, 'productGrid');
 }
 
 function renderProductPage() {
